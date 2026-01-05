@@ -4,6 +4,7 @@ export function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   })
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -23,7 +24,7 @@ export function ContactForm() {
 
       if (response.ok) {
         setStatus('success')
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ name: '', email: '', phone: '', message: '' })
       } else {
         setStatus('error')
       }
@@ -75,15 +76,29 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email <span className="text-slate-400 text-xs font-normal">(optional)</span></label>
             <input
               type="email"
               id="email"
               name="email"
-              required
               placeholder="your.email@example.com"
               className="w-full px-4 py-3 border border-slate-300 rounded-md bg-white focus:ring-primary focus:border-primary"
               value={formData.email}
+              onChange={handleChange}
+              disabled={status === 'submitting'}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="+44 7939 018799"
+              className="w-full px-4 py-3 border border-slate-300 rounded-md bg-white focus:ring-primary focus:border-primary"
+              value={formData.phone}
               onChange={handleChange}
               disabled={status === 'submitting'}
             />
