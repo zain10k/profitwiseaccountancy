@@ -12,7 +12,7 @@ export function HeroContent() {
         <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl drop-shadow-lg">
           Trusted Accountancy & Tax Services for <span className="text-primary">Growing Businesses</span>
         </h1>
-        <p className="mt-6 text-lg text-white/90 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+        <p className="hidden sm:block mt-6 text-lg text-white/90 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
           We help small and medium businesses navigate complex financial landscapes. 
           Get proactive advice, accurate bookkeeping, and strategic tax planning tailored to your goals.
         </p>

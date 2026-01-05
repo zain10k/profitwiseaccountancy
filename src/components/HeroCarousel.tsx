@@ -43,9 +43,10 @@ export function HeroCarousel({ slides, autoPlay = true, autoPlayInterval = 5000 
   }
 
   return (
-    <section className="relative overflow-hidden min-h-[90vh] z-0 bg-transparent">
+    <section className="relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-[90vh] z-0 bg-transparent">
       {slides.map((slide, index) => {
         const isActive = index === currentSlide
+        const isFirstSlide = index === 0
         const handleClick = () => {
           if (slide.onClickLink && isActive) {
             const [path, hash] = slide.onClickLink.split('#')
@@ -65,13 +66,14 @@ export function HeroCarousel({ slides, autoPlay = true, autoPlayInterval = 5000 
           <div
             key={slide.id}
             onClick={handleClick}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
+            className={`absolute inset-0 transition-opacity duration-500 sm:duration-1000 ${
               isActive ? 'opacity-100 z-50' : 'opacity-0 z-0 pointer-events-none'
-            } ${slide.onClickLink && isActive ? 'cursor-pointer' : ''}`}
+            } ${slide.onClickLink && isActive ? 'cursor-pointer' : ''} ${
+              isFirstSlide ? 'bg-cover' : 'bg-contain sm:bg-cover'
+            } ${!isFirstSlide ? 'carousel-image-center-mobile' : ''}`}
             style={{
               backgroundImage: `url(${slide.backgroundImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: index === 0 ? 'center' : 'center top',
+              backgroundPosition: isFirstSlide ? 'center' : 'center',
               backgroundRepeat: 'no-repeat',
             }}
           >
@@ -81,44 +83,44 @@ export function HeroCarousel({ slides, autoPlay = true, autoPlayInterval = 5000 
           )}
           
           {/* Content */}
-          <div className="relative z-20 min-h-[90vh] flex items-center justify-center pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24">
+          <div className="relative z-20 min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-[90vh] flex items-center justify-center pt-4 pb-8 sm:pt-8 sm:pb-12 md:pt-12 md:pb-16 lg:pt-16 lg:pb-24 px-4">
             {slide.content}
           </div>
         </div>
         )
       })}
 
-      {/* Navigation Arrows */}
-      {slides.length > 1 && (
+      {/* Navigation Arrows - Hidden */}
+      {false && slides.length > 1 && (
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-all"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 active:bg-white/40 backdrop-blur-sm rounded-full p-1.5 sm:p-2 transition-all touch-manipulation"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="h-6 w-6 text-white" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-all"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 active:bg-white/40 backdrop-blur-sm rounded-full p-1.5 sm:p-2 transition-all touch-manipulation"
             aria-label="Next slide"
           >
-            <ChevronRight className="h-6 w-6 text-white" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" />
           </button>
         </>
       )}
 
-      {/* Dots Indicator */}
-      {slides.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+      {/* Dots Indicator - Hidden */}
+      {false && slides.length > 1 && (
+        <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-1.5 sm:gap-2">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all ${
+              className={`h-1.5 sm:h-2 rounded-full transition-all touch-manipulation ${
                 index === currentSlide
-                  ? 'w-8 bg-white'
-                  : 'w-2 bg-white/50 hover:bg-white/75'
+                  ? 'w-6 sm:w-8 bg-white'
+                  : 'w-1.5 sm:w-2 bg-white/50 hover:bg-white/75 active:bg-white/90'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

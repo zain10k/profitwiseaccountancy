@@ -82,3 +82,15 @@
     scroll-behavior: smooth;
   }
 }
+
+@layer utilities {
+  .carousel-image-center-mobile {
+    background-position: center;
+  }
+  
+  @media (min-width: 640px) {
+    .carousel-image-center-mobile {
+      background-position: center top;
+    }
+  }
+}

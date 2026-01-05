@@ -56,6 +56,20 @@ export function Home() {
   return (
     <div className="flex flex-col">
       <HeroCarousel slides={carouselSlides} autoPlay={true} autoPlayInterval={10000} />
+      
+      {/* Mobile-only description section */}
+      <section className="block sm:hidden bg-transparent py-8 px-4">
+        <div className="container mx-auto max-w-2xl">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4 text-center">
+            Your Trusted <span className="text-primary">Financial Partner</span>
+          </h2>
+          <p className="text-base text-slate-600 leading-relaxed text-center">
+            We help small and medium businesses navigate complex financial landscapes. 
+            Get proactive advice, accurate bookkeeping, and strategic tax planning tailored to your goals.
+          </p>
+        </div>
+      </section>
+      
       <ServiceHighlights />
       <WhyChooseUs />
       <Testimonials />
