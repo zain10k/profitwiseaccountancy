@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export function Hero() {
   return (
@@ -32,16 +32,6 @@ export function Hero() {
               >
                 View Our Services
               </Link>
-            </div>
-            <div className="mt-10 flex flex-col sm:flex-row gap-6 sm:justify-center lg:justify-start text-sm font-medium text-slate-500">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span>ICAEW Chartered Accountants</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span>Xero & QuickBooks Partners</span>
-              </div>
             </div>
           </div>
           <div className="relative mt-12 sm:mx-auto sm:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center">

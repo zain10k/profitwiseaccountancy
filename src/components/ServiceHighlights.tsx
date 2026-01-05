@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Search } from 'lucide-react'
+import { Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Search, FileCheck, Scale } from 'lucide-react'
 
 const services = [
   {
@@ -44,6 +44,18 @@ const services = [
     icon: Search,
     link: '/services#vat-investigation',
   },
+  {
+    title: 'Self Assessment',
+    description: 'Expert preparation and submission of your Self Assessment tax returns with accuracy and deadline compliance.',
+    icon: FileCheck,
+    link: '/services#self-assessment',
+  },
+  {
+    title: 'Wills, Trust & Probate',
+    description: 'Comprehensive estate planning and probate services to protect your assets and ensure tax-efficient estate administration.',
+    icon: Scale,
+    link: '/services#wills-trust-probate',
+  },
 ]
 
 export function ServiceHighlights() {
@@ -75,6 +87,8 @@ export function ServiceHighlights() {
                     service.title.includes('Advisory') ? 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600' :
                     service.title.includes('Management') ? 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600' :
                     service.title.includes('VAT Investigation') ? 'https://images.pexels.com/photos/6801876/pexels-photo-6801876.jpeg?auto=compress&cs=tinysrgb&w=600' :
+                    service.title.includes('Self Assessment') ? 'https://images.pexels.com/photos/6801876/pexels-photo-6801876.jpeg?auto=compress&cs=tinysrgb&w=600' :
+                    service.title.includes('Wills') ? 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=600' :
                     'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600'
                   }
                   alt={service.title}

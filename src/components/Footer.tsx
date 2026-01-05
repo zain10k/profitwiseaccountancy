@@ -65,10 +65,12 @@ export function Footer() {
               <li><Link to="/services#tax" onClick={() => handleLinkClick('/services#tax')} className="hover:text-white transition-colors">Tax Planning & Preparation</Link></li>
               <li><Link to="/services#bookkeeping" onClick={() => handleLinkClick('/services#bookkeeping')} className="hover:text-white transition-colors">Bookkeeping & Cloud Accounting</Link></li>
               <li><Link to="/services#vat-investigation" onClick={() => handleLinkClick('/services#vat-investigation')} className="hover:text-white transition-colors">VAT Investigation</Link></li>
-              <li><Link to="/services#payroll" onClick={() => handleLinkClick('/services#payroll')} className="hover:text-white transition-colors">Payroll & Auto Enrolment</Link></li>
+              <li><Link to="/services#payroll" onClick={() => handleLinkClick('/services#payroll')} className="hover:text-white transition-colors">Payroll & Pension</Link></li>
               <li><Link to="/services#management" onClick={() => handleLinkClick('/services#management')} className="hover:text-white transition-colors">Management Accounts</Link></li>
               <li><Link to="/services#advisory" onClick={() => handleLinkClick('/services#advisory')} className="hover:text-white transition-colors">Business Advisory</Link></li>
               <li><Link to="/services#formation" onClick={() => handleLinkClick('/services#formation')} className="hover:text-white transition-colors">Company Formation & Secretarial</Link></li>
+              <li><Link to="/services#self-assessment" onClick={() => handleLinkClick('/services#self-assessment')} className="hover:text-white transition-colors">Self Assessment</Link></li>
+              <li><Link to="/services#wills-trust-probate" onClick={() => handleLinkClick('/services#wills-trust-probate')} className="hover:text-white transition-colors">Wills, Trust & Probate</Link></li>
             </ul>
           </div>
 
@@ -82,7 +84,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 shrink-0 text-primary" />
-                <span>+44 (0) 20 1234 5678</span>
+                <span>+44 7939 018799</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-primary" />

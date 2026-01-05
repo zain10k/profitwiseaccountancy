@@ -37,8 +37,8 @@ export function Contact() {
                   </p>
                   <p>
                     <span className="font-medium">Phone:</span>{' '}
-                    <a href="tel:+442012345678" className="underline hover:text-primary">
-                      +44 (0) 20 1234 5678
+                    <a href="tel:+447939018799" className="underline hover:text-primary">
+                      +44 7939 018799
                     </a>
                   </p>
                   <p>

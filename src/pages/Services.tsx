@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Shield, Search } from 'lucide-react'
+import { Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Shield, Search, FileCheck, Scale } from 'lucide-react'
 
 const allServices = [
   {
@@ -7,13 +7,11 @@ const allServices = [
     title: 'Tax Planning & Preparation',
     description: 'We go beyond simple compliance. Our proactive tax planning strategies help you minimize liability while ensuring you meet all HMRC obligations.',
     details: [
-        'Self Assessment Tax Returns',
         'Corporation Tax Returns',
         'Corporation Tax Advisory',
         'Tax Consultancy',
         'Capital Gains Tax Advice',
-        'Inheritance Tax Planning',
-        'R&D Tax Credits'
+        'Inheritance Tax Planning'
     ],
     icon: Calculator,
   },
@@ -47,7 +45,7 @@ const allServices = [
   },
   {
     id: 'payroll',
-    title: 'Payroll & Auto Enrolment',
+    title: 'Payroll & Pension',
     description: 'Paying your team shouldn’t be a headache. We handle the entire payroll process, ensuring accuracy and compliance with pension regulations.',
     details: [
         'Weekly/Monthly Payslips',
@@ -96,6 +94,34 @@ const allServices = [
         'Director Appointments'
     ],
     icon: Briefcase,
+  },
+  {
+    id: 'self-assessment',
+    title: 'Self Assessment',
+    description: 'Expert preparation and submission of your Self Assessment tax returns. We ensure accuracy, maximize your allowances, and meet all HMRC deadlines.',
+    details: [
+        'Individual Tax Return Preparation',
+        'Sole Trader Returns',
+        'Partnership Returns',
+        'Tax Calculation & Optimization',
+        'Deadline Management',
+        'HMRC Correspondence Handling'
+    ],
+    icon: FileCheck,
+  },
+  {
+    id: 'wills-trust-probate',
+    title: 'Wills, Trust & Probate',
+    description: 'Comprehensive estate planning and probate services to protect your assets and ensure your wishes are carried out efficiently and tax-efficiently.',
+    details: [
+        'Will Preparation & Review',
+        'Trust Formation & Administration',
+        'Probate Services',
+        'Inheritance Tax Planning',
+        'Estate Administration',
+        'Beneficiary Support'
+    ],
+    icon: Scale,
   }
 ]
 
@@ -150,6 +176,8 @@ export function Services() {
                     service.id === 'management' ? 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=800' :
                     service.id === 'advisory' ? 'https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=800' :
                     service.id === 'vat-investigation' ? 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800' :
+                    service.id === 'self-assessment' ? 'https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=800' :
+                    service.id === 'wills-trust-probate' ? 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=800' :
                     'https://images.pexels.com/photos/3184341/pexels-photo-3184341.jpeg?auto=compress&cs=tinysrgb&w=800'
                   }
                   alt={service.title}
