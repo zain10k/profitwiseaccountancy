@@ -13,7 +13,7 @@ export function ContactForm() {
     setStatus('submitting')
 
     try {
-      const response = await fetch('https://formspree.io/f/xojvbagp', {
+      const response = await fetch('https://formspree.io/f/xqeajazr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
