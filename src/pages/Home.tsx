@@ -46,7 +46,7 @@ export function Home() {
     },
     {
       id: 'image-6',
-      backgroundImage: '/Gemini_Generated_Image_tn52r7tn52r7tn52.png',
+      backgroundImage: '/6.png',
       content: <div></div>,
       showOverlay: false,
       onClickLink: '/about#what-sets-us-apart'
