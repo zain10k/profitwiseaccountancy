@@ -1,4 +1,5 @@
-import { Hero } from '@/components/Hero'
+import { HeroCarousel } from '@/components/HeroCarousel'
+import { HeroContent } from '@/components/Hero'
 import { ServiceHighlights } from '@/components/ServiceHighlights'
 import { Testimonials } from '@/components/Testimonials'
 import { WhyChooseUs } from '@/components/WhyChooseUs'
@@ -6,9 +7,55 @@ import { Pricing } from '@/components/Pricing'
 import { Link } from 'react-router-dom'
 
 export function Home() {
+  const carouselSlides = [
+    {
+      id: 'hero-1',
+      backgroundImage: 'https://images.pexels.com/photos/3184342/pexels-photo-3184342.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      content: <HeroContent />,
+      showOverlay: true
+    },
+    {
+      id: 'image-1',
+      backgroundImage: '/1.png',
+      content: <div></div>,
+      showOverlay: false
+    },
+    {
+      id: 'image-2',
+      backgroundImage: '/2.png',
+      content: <div></div>,
+      showOverlay: false
+    },
+    {
+      id: 'image-3',
+      backgroundImage: '/3.png',
+      content: <div></div>,
+      showOverlay: false
+    },
+    {
+      id: 'image-4',
+      backgroundImage: '/4.png',
+      content: <div></div>,
+      showOverlay: false
+    },
+    {
+      id: 'image-5',
+      backgroundImage: '/5.png',
+      content: <div></div>,
+      showOverlay: false
+    },
+    {
+      id: 'image-6',
+      backgroundImage: '/Gemini_Generated_Image_tn52r7tn52r7tn52.png',
+      content: <div></div>,
+      showOverlay: false,
+      onClickLink: '/about#what-sets-us-apart'
+    },
+  ]
+
   return (
     <div className="flex flex-col">
-      <Hero />
+      <HeroCarousel slides={carouselSlides} autoPlay={true} autoPlayInterval={10000} />
       <ServiceHighlights />
       <WhyChooseUs />
       <Testimonials />

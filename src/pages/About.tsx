@@ -49,7 +49,7 @@ export function About() {
       </div>
 
       {/* What Sets Us Apart */}
-      <div className="py-16 sm:py-24 bg-transparent">
+      <div id="what-sets-us-apart" className="py-16 sm:py-24 bg-transparent">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
