@@ -68,7 +68,7 @@ export function Pricing() {
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className={`rounded-lg shadow-sm divide-y divide-slate-200 border bg-white/40 backdrop-blur-sm flex flex-col ${
+              className={`rounded-lg shadow-sm divide-y divide-slate-200 border bg-white flex flex-col ${
                 tier.mostPopular ? 'border-primary ring-2 ring-primary relative' : 'border-slate-200'
               }`}
             >

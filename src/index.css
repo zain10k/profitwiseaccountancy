@@ -4,36 +4,36 @@
 
 @layer base {
   :root {
-    --background: 40 20% 97%; /* Warm paper color */
-    --foreground: 222.2 84% 4.9%;
+    --background: 40 10% 88%; /* Even darker warm paper color for contrast */
+    --foreground: 222.2 47.4% 11.2%; /* slate-900 */
 
-    --card: 40 20% 97%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%; /* slate-900 */
 
     --popover: 40 20% 97%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222.2 47.4% 11.2%; /* slate-900 */
 
-    /* Gold/Amber from Logo (#c4841e) */
-    --primary: 38 72% 43%;
+    /* Gold/Amber from Logo (#c4841e) - Exact match */
+    --primary: 37 73% 44%;
     --primary-foreground: 0 0% 100%;
 
     /* Light Blue/Grey for Secondary Actions */
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 222.2 47.4% 11.2%; /* slate-900 */
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     /* Subtle Accent */
     --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 222.2 47.4% 11.2%; /* slate-900 */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 38 72% 43%;
+    --ring: 37 73% 44%;
 
     --radius: 0.5rem;
   }

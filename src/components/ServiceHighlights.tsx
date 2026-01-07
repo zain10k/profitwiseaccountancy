@@ -76,7 +76,7 @@ export function ServiceHighlights() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="relative group rounded-2xl border-2 border-slate-200 bg-white/40 backdrop-blur-sm overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-300"
+              className="relative group rounded-2xl border-2 border-slate-200 bg-white overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-300"
             >
               <div className="h-48 overflow-hidden">
                 <img 

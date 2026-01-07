@@ -1,4 +1,4 @@
-import { Award, Target, Users, TrendingUp, Shield, Lightbulb, Heart, CheckCircle2 } from 'lucide-react'
+import { Award, Target, Users, TrendingUp, Shield, Lightbulb, Heart, CheckCircle2, Linkedin } from 'lucide-react'
 
 export function About() {
   return (
@@ -63,7 +63,7 @@ export function About() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all">
+              <div className="bg-white rounded-xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all">
                 <div className="h-48 overflow-hidden">
                   <img 
                     src="https://images.pexels.com/photos/5905701/pexels-photo-5905701.jpeg?auto=compress&cs=tinysrgb&w=600" 
@@ -82,7 +82,7 @@ export function About() {
                 </div>
               </div>
 
-              <div className="bg-white/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all">
+              <div className="bg-white rounded-xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all">
                 <div className="h-48 overflow-hidden">
                   <img 
                     src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600" 
@@ -101,7 +101,7 @@ export function About() {
                 </div>
               </div>
 
-              <div className="bg-white/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all">
+              <div className="bg-white rounded-xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all">
                 <div className="h-48 overflow-hidden">
                   <img 
                     src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600" 
@@ -139,7 +139,7 @@ export function About() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white/40 backdrop-blur-sm rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
+              <div className="bg-white rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
                 <div className="flex items-start gap-4">
                   <div className="bg-primary rounded-lg p-3 shrink-0">
                     <Shield className="h-6 w-6 text-white" />
@@ -153,7 +153,7 @@ export function About() {
                 </div>
               </div>
 
-              <div className="bg-white/40 backdrop-blur-sm rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
+              <div className="bg-white rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
                 <div className="flex items-start gap-4">
                   <div className="bg-primary rounded-lg p-3 shrink-0">
                     <Award className="h-6 w-6 text-white" />
@@ -167,7 +167,7 @@ export function About() {
                 </div>
               </div>
 
-              <div className="bg-white/40 backdrop-blur-sm rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
+              <div className="bg-white rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
                 <div className="flex items-start gap-4">
                   <div className="bg-primary rounded-lg p-3 shrink-0">
                     <Heart className="h-6 w-6 text-white" />
@@ -181,7 +181,7 @@ export function About() {
                 </div>
               </div>
 
-              <div className="bg-white/40 backdrop-blur-sm rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
+              <div className="bg-white rounded-xl p-8 border-2 border-primary/20 hover:border-primary transition-all">
                 <div className="flex items-start gap-4">
                   <div className="bg-primary rounded-lg p-3 shrink-0">
                     <TrendingUp className="h-6 w-6 text-white" />
@@ -211,7 +211,7 @@ export function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-12 border-2 border-primary/20">
+              <div className="bg-white rounded-2xl p-12 border-2 border-primary/20">
                 <h2 className="text-3xl font-bold text-slate-900 mb-6">
                   Our <span className="text-primary">Mission</span>
                 </h2>
@@ -219,9 +219,20 @@ export function About() {
                 <p className="text-xl text-slate-600 leading-relaxed mb-6">
                   To empower businesses with financial clarity, strategic insights, and peace of mind. We transform complex accounting into clear, actionable intelligence that drives informed decision-making and sustainable growth.
                 </p>
-                <p className="text-lg text-slate-600 leading-relaxed">
+                <p className="text-lg text-slate-600 leading-relaxed mb-6">
                   We're not just here to file your taxes or balance your books. We're here to be your trusted financial partner, helping you navigate challenges, seize opportunities, and build a stronger, more profitable business.
                 </p>
+                <div className="flex items-center gap-3 pt-4 border-t border-slate-200">
+                  <Linkedin className="h-5 w-5 text-primary shrink-0" />
+                  <a 
+                    href="https://www.linkedin.com/company/profitwiseaccountants/?viewAsMember=true" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 font-medium transition-colors"
+                  >
+                    Connect with us on LinkedIn
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -248,9 +259,9 @@ export function About() {
                 "Transparent pricing with no hidden fees",
                 "Industry expertise across multiple sectors"
               ].map((point, index) => (
-                <div key={index} className="flex items-center gap-4 bg-white/40 backdrop-blur-sm rounded-lg p-4 border-2 border-primary/20">
+                <div key={index} className="flex items-center gap-4 bg-white rounded-lg p-4 border-2 border-primary/20">
                   <CheckCircle2 className="h-6 w-6 text-primary shrink-0" />
-                  <p className="text-lg text-slate-700">{point}</p>
+                  <p className="text-lg text-slate-900">{point}</p>
                 </div>
               ))}
             </div>

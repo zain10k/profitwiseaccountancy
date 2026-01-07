@@ -49,7 +49,7 @@ export function Home() {
       backgroundImage: '/6.png',
       content: <div></div>,
       showOverlay: false,
-      onClickLink: '/about#what-sets-us-apart'
+      // onClickLink: '/about#what-sets-us-apart'
     },
   ]
 

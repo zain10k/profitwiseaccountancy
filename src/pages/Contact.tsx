@@ -1,4 +1,5 @@
 import { ContactForm } from '@/components/ContactForm'
+import { Linkedin } from 'lucide-react'
 
 export function Contact() {
   return (
@@ -17,7 +18,7 @@ export function Contact() {
             </div>
 
             {/* Company Information */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border-2 border-primary/20">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-primary/20">
               <div className="h-48 overflow-hidden">
                 <img 
                   src="https://images.pexels.com/photos/149736/pexels-photo-149736.jpeg?auto=compress&cs=tinysrgb&w=800" 
@@ -27,7 +28,7 @@ export function Contact() {
               </div>
               <div className="p-8">
                 <p className="font-bold text-primary mb-4 text-lg">ProfitWise Accountants</p>
-                <div className="space-y-3 text-slate-700">
+                <div className="space-y-3 text-slate-900">
                   <p>
                     <span className="font-medium">Address:</span><br />
                     12 Swale Close<br />
@@ -45,6 +46,18 @@ export function Contact() {
                     <span className="font-medium">Email:</span>{' '}
                     <a href="mailto:info@profitwiseaccountants.com" className="underline hover:text-primary">
                       info@profitwiseaccountants.com
+                    </a>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Linkedin className="h-5 w-5 text-primary shrink-0" />
+                    <span className="font-medium">LinkedIn:</span>{' '}
+                    <a 
+                      href="https://www.linkedin.com/company/profitwiseaccountants/?viewAsMember=true" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="underline hover:text-primary"
+                    >
+                      Follow us on LinkedIn
                     </a>
                   </p>
                 </div>
@@ -70,7 +83,7 @@ export function Contact() {
             </div>
 
             {/* Embedded Google Map */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="w-full h-[600px]">
                 <iframe
                   src="https://www.google.com/maps?q=12+Swale+Close,+Aveley,+South+Ockendon+RM15+4LX&output=embed"

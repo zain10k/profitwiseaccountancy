@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin, Phone, Linkedin } from 'lucide-react'
 import { PartnersStrip } from './PartnersStrip'
 
 export function Footer() {
@@ -89,6 +89,17 @@ export function Footer() {
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-primary" />
                 <span>info@profitwiseaccountants.com</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Linkedin className="h-5 w-5 shrink-0 text-primary" />
+                <a 
+                  href="https://www.linkedin.com/company/profitwiseaccountants/?viewAsMember=true" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Follow us on LinkedIn
+                </a>
               </li>
             </ul>
           </div>

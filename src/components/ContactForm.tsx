@@ -41,7 +41,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="bg-white/70 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-slate-100">
+    <div className="bg-white rounded-xl shadow-lg p-8 border border-slate-100">
       {status === 'success' ? (
         <div className="text-center py-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
@@ -61,7 +61,7 @@ export function ContactForm() {
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Name</label>
+            <label htmlFor="name" className="block text-sm font-medium text-slate-900 mb-2">Name</label>
             <input
               type="text"
               id="name"
@@ -76,7 +76,7 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email <span className="text-slate-400 text-xs font-normal">(optional)</span></label>
+            <label htmlFor="email" className="block text-sm font-medium text-slate-900 mb-2">Email <span className="text-slate-400 text-xs font-normal">(optional)</span></label>
             <input
               type="email"
               id="email"
@@ -90,7 +90,7 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
+            <label htmlFor="phone" className="block text-sm font-medium text-slate-900 mb-2">Phone Number</label>
             <input
               type="tel"
               id="phone"
@@ -105,7 +105,7 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Message</label>
+            <label htmlFor="message" className="block text-sm font-medium text-slate-900 mb-2">Message</label>
             <textarea
               id="message"
               name="message"

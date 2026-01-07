@@ -91,7 +91,7 @@ export function Partners() {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white/40 backdrop-blur-sm p-8 rounded-xl border-2 border-primary/20 hover:border-primary hover:shadow-lg transition-all duration-300"
+                className="group flex flex-col items-center bg-white p-8 rounded-xl border-2 border-primary/20 hover:border-primary hover:shadow-lg transition-all duration-300"
               >
                 <div className="h-32 w-full flex items-center justify-center mb-6 p-4 bg-white rounded-lg">
                   <img 

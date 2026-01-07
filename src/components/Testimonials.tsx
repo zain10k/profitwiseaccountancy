@@ -37,13 +37,13 @@ export function Testimonials() {
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 shadow-sm border-2 border-slate-100 hover:border-primary transition-colors">
+            <div key={index} className="bg-white rounded-2xl p-8 shadow-sm border-2 border-slate-100 hover:border-primary transition-colors">
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} className="h-5 w-5 fill-primary text-primary" />
                 ))}
               </div>
-              <blockquote className="text-slate-700 mb-6 italic">
+              <blockquote className="text-slate-900 mb-6 italic">
                 "{testimonial.content}"
               </blockquote>
               <div className="flex items-center gap-4">

@@ -167,7 +167,7 @@ export function Services() {
                     </Link>
                 </div>
               </div>
-              <div className="lg:w-1/2 bg-white/40 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-primary/20 shadow-inner h-full min-h-[300px]">
+              <div className="lg:w-1/2 bg-white rounded-2xl overflow-hidden border-2 border-primary/20 shadow-inner h-full min-h-[300px]">
                 <img 
                   src={
                     service.id === 'tax' ? 'https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=800' :
