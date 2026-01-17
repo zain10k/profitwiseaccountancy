@@ -105,6 +105,7 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-6 text-xs text-slate-400 italic">*Conditions apply</p>
               </div>
             </div>
           ))}

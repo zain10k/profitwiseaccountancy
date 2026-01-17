@@ -3,54 +3,63 @@ import { Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Search, F
 
 const services = [
   {
+    id: 'tax',
     title: 'Tax Planning & Returns',
     description: 'Strategic tax planning to minimize liabilities and ensure full compliance with HMRC regulations.',
     icon: Calculator,
     link: '/services#tax',
   },
   {
+    id: 'bookkeeping',
     title: 'Bookkeeping & VAT',
     description: 'Accurate, timely bookkeeping and VAT return services using the latest cloud accounting software.',
     icon: FileText,
     link: '/services#bookkeeping',
   },
   {
+    id: 'payroll',
     title: 'Payroll Management',
     description: 'Complete payroll solutions including payslips, PAYE, pension contributions, and year-end reporting.',
     icon: Users,
     link: '/services#payroll',
   },
   {
+    id: 'advisory',
     title: 'Business Advisory',
     description: 'Expert guidance to help you make informed decisions, improve cash flow, and grow your business.',
     icon: TrendingUp,
     link: '/services#advisory',
   },
   {
+    id: 'management',
     title: 'Management Accounts',
     description: 'Regular financial reports giving you a clear picture of your business performance.',
     icon: PieChart,
     link: '/services#management',
   },
   {
+    id: 'formation',
     title: 'Company Formation',
     description: 'Assistance with setting up new limited companies, including registration and initial structuring.',
     icon: Briefcase,
     link: '/services#formation',
   },
   {
+    id: 'vat-investigation',
     title: 'VAT Investigation',
     description: 'Expert representation and support during HMRC VAT investigations to protect your business interests.',
     icon: Search,
     link: '/services#vat-investigation',
   },
   {
+    id: 'self-assessment',
     title: 'Self Assessment',
     description: 'Expert preparation and submission of your Self Assessment tax returns with accuracy and deadline compliance.',
     icon: FileCheck,
     link: '/services#self-assessment',
   },
   {
+    id: 'wills-trust-probate',
     title: 'Wills, Trust & Probate',
     description: 'Comprehensive estate planning and probate services to protect your assets and ensure tax-efficient estate administration.',
     icon: Scale,
@@ -81,15 +90,16 @@ export function ServiceHighlights() {
               <div className="h-48 overflow-hidden">
                 <img 
                   src={
-                    service.title.includes('Tax') ? 'https://images.pexels.com/photos/6801876/pexels-photo-6801876.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    service.title.includes('Bookkeeping') ? 'https://images.pexels.com/photos/5905702/pexels-photo-5905702.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    service.title.includes('Payroll') ? 'https://images.pexels.com/photos/3184321/pexels-photo-3184321.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    service.title.includes('Advisory') ? 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    service.title.includes('Management') ? 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    service.title.includes('VAT Investigation') ? 'https://images.pexels.com/photos/6801876/pexels-photo-6801876.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    service.title.includes('Self Assessment') ? 'https://images.pexels.com/photos/6801876/pexels-photo-6801876.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    service.title.includes('Wills') ? 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=600' :
-                    'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600'
+                    service.id === 'tax' ? '/tax.png' :
+                    service.id === 'bookkeeping' ? '/book%20keeping.png' :
+                    service.id === 'payroll' ? '/payroll.png' :
+                    service.id === 'management' ? '/accounts.png' :
+                    service.id === 'advisory' ? '/advisory.png' :
+                    service.id === 'formation' ? '/company%20formation.png' :
+                    service.id === 'vat-investigation' ? 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800' :
+                    service.id === 'self-assessment' ? 'https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=800' :
+                    service.id === 'wills-trust-probate' ? '/will.png' :
+                    'https://images.pexels.com/photos/3184341/pexels-photo-3184341.jpeg?auto=compress&cs=tinysrgb&w=800'
                   }
                   alt={service.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

@@ -170,14 +170,15 @@ export function Services() {
               <div className="lg:w-1/2 bg-white rounded-2xl overflow-hidden border-2 border-primary/20 shadow-inner h-full min-h-[300px]">
                 <img 
                   src={
-                    service.id === 'tax' ? 'https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=800' :
-                    service.id === 'bookkeeping' ? 'https://images.pexels.com/photos/5905703/pexels-photo-5905703.jpeg?auto=compress&cs=tinysrgb&w=800' :
-                    service.id === 'payroll' ? 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800' :
-                    service.id === 'management' ? 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=800' :
-                    service.id === 'advisory' ? 'https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=800' :
+                    service.id === 'tax' ? '/tax.png' :
+                    service.id === 'bookkeeping' ? '/book%20keeping.png' :
+                    service.id === 'payroll' ? '/payroll.png' :
+                    service.id === 'management' ? '/accounts.png' :
+                    service.id === 'advisory' ? '/advisory.png' :
+                    service.id === 'formation' ? '/company%20formation.png' :
                     service.id === 'vat-investigation' ? 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800' :
                     service.id === 'self-assessment' ? 'https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=800' :
-                    service.id === 'wills-trust-probate' ? 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=800' :
+                    service.id === 'wills-trust-probate' ? '/will.png' :
                     'https://images.pexels.com/photos/3184341/pexels-photo-3184341.jpeg?auto=compress&cs=tinysrgb&w=800'
                   }
                   alt={service.title}

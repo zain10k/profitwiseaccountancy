@@ -10,7 +10,7 @@ export function Home() {
   const carouselSlides = [
     {
       id: 'hero-1',
-      backgroundImage: 'https://images.pexels.com/photos/3184342/pexels-photo-3184342.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      backgroundImage: '/title%20photo.png',
       content: <HeroContent />,
       showOverlay: true
     },
