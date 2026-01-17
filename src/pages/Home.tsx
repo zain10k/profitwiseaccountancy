@@ -20,12 +20,12 @@ export function Home() {
       content: <div></div>,
       showOverlay: false
     },
-    {
-      id: 'image-2',
-      backgroundImage: '/2.png',
-      content: <div></div>,
-      showOverlay: false
-    },
+    // {
+    //   id: 'image-2',
+    //   backgroundImage: '/2.png',
+    //   content: <div></div>,
+    //   showOverlay: false
+    // },
     {
       id: 'image-3',
       backgroundImage: '/3.png',
@@ -38,12 +38,12 @@ export function Home() {
       content: <div></div>,
       showOverlay: false
     },
-    {
-      id: 'image-5',
-      backgroundImage: '/5.png',
-      content: <div></div>,
-      showOverlay: false
-    },
+    // {
+    //   id: 'image-5',
+    //   backgroundImage: '/5.png',
+    //   content: <div></div>,
+    //   showOverlay: false
+    // },
     {
       id: 'image-6',
       backgroundImage: '/6.png',
