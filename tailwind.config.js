@@ -6,6 +6,15 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        'marquee-ltr': 'marquee-ltr 45s linear infinite',
+      },
+      keyframes: {
+        'marquee-ltr': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
