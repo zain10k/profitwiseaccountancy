@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Search, FileCheck, Scale } from 'lucide-react'
+import { Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Search, FileCheck, Scale, ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Container } from '@/components/ui/Container'
 
 const services = [
   {
@@ -67,66 +69,135 @@ const services = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, rotationX: -15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotationX: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.4, 0.25, 1],
+    },
+  },
+}
+
 export function ServiceHighlights() {
   return (
-    <section className="bg-transparent py-16 sm:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Comprehensive <span className="text-primary">Accounting Solutions</span>
-          </h2>
-          <div className="mt-4 w-24 h-1 bg-primary mx-auto mb-4"></div>
-          <p className="mt-4 text-lg text-slate-600">
-            We provide a full range of accounting and tax services tailored to the unique needs of your business.
-          </p>
+    <section className="relative py-32 bg-slate-950 overflow-hidden">
+      {/* Subtle gradient fade for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-950 to-slate-950 pointer-events-none" />
+      
+      {/* Optional: Allow Spline background to show through */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+      </div>
+
+      <Container className="relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6"
+            >
+              Comprehensive <span className="text-primary">Financial Solutions</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-lg text-slate-400 leading-relaxed"
+            >
+              We provide a full range of accounting and tax services tailored to the unique needs of your business.
+            </motion.p>
+          </div>
+          <Link 
+            to="/services" 
+            className="hidden md:inline-flex items-center px-6 py-3 rounded-full bg-primary/10 backdrop-blur-lg border border-primary/20 text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(245,158,11,0.5)]"
+          >
+            View All Services <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          style={{ perspective: '1000px' }}
+        >
           {services.map((service) => (
-            <div
-              key={service.title}
-              className="relative group rounded-2xl border-2 border-slate-200 bg-white overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-300"
+            <motion.div
+              key={service.id}
+              variants={itemVariants}
+              whileHover={{ 
+                rotateX: 5,
+                rotateY: 5,
+                scale: 1.02,
+                transition: { duration: 0.3, ease: 'easeOut' }
+              }}
+              className="group relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_20px_rgba(217,119,6,0.3)]"
+              style={{ 
+                transformStyle: 'preserve-3d',
+                willChange: 'transform'
+              }}
             >
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src={
-                    service.id === 'tax' ? '/tax.png' :
-                    service.id === 'bookkeeping' ? '/book%20keeping.png' :
-                    service.id === 'payroll' ? '/payroll.png' :
-                    service.id === 'management' ? '/accounts.png' :
-                    service.id === 'advisory' ? '/advisory.png' :
-                    service.id === 'formation' ? '/company%20formation.png' :
-                    service.id === 'vat-investigation' ? 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800' :
-                    service.id === 'self-assessment' ? 'https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=800' :
-                    service.id === 'wills-trust-probate' ? '/will.png' :
-                    'https://images.pexels.com/photos/3184341/pexels-photo-3184341.jpeg?auto=compress&cs=tinysrgb&w=800'
-                  }
-                  alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+              {/* Decorative background icon */}
+              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500">
+                <service.icon className="h-32 w-32 text-primary" />
               </div>
-              <div className="p-8">
-                <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-3 text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+
+              {/* Inner glow effect on hover */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-primary/0 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
+
+              <div className="relative z-10">
+                {/* Icon container with glassmorphism */}
+                <div className="inline-flex items-center justify-center rounded-xl bg-primary/10 backdrop-blur-sm p-3 text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(217,119,6,0.4)]">
                   <service.icon className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                
+                <h3 className="text-xl font-bold tracking-tight text-white mb-3 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 mb-6">
+                
+                <p className="text-slate-400 mb-6 leading-relaxed text-sm">
                   {service.description}
                 </p>
+                
                 <Link
                   to={service.link}
-                  className="inline-flex items-center text-primary font-medium hover:text-primary/80"
+                  className="inline-flex items-center text-sm font-bold text-slate-300 group-hover:text-primary transition-colors duration-300"
                 >
-                  Learn more <span aria-hidden="true" className="ml-1">&rarr;</span>
+                  Learn more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
+        </motion.div>
+        
+        <div className="mt-16 text-center md:hidden">
+          <Link 
+            to="/services" 
+            className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 backdrop-blur-lg border border-primary/20 text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300"
+          >
+            View All Services <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
-

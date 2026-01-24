@@ -1,4 +1,6 @@
 import { Star } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Container } from '@/components/ui/Container'
 
 const testimonials = [
   {
@@ -23,43 +25,59 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-transparent py-16 sm:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            What Our <span className="text-primary">Clients Say</span>
-          </h2>
-          <div className="mt-4 w-24 h-1 bg-primary mx-auto mb-4"></div>
-          <p className="mt-4 text-lg text-slate-600">
+    <section className="bg-white dark:bg-slate-950 py-24 border-t border-slate-100 dark:border-slate-800">
+      <Container>
+        <div className="text-center mb-16 max-w-2xl mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl mb-4"
+          >
+            Trusted by Ambitious Founders
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-slate-600 dark:text-slate-400"
+          >
             Don't just take our word for it. Here's why businesses trust us with their finances.
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white rounded-2xl p-8 shadow-sm border-2 border-slate-100 hover:border-primary transition-colors">
-              <div className="flex gap-1 mb-4">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-all"
+            >
+              <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                  <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <blockquote className="text-slate-900 mb-6 italic">
+              <blockquote className="text-slate-700 dark:text-slate-300 mb-8 text-lg leading-relaxed">
                 "{testimonial.content}"
               </blockquote>
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
                   {testimonial.author.charAt(0)}
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-900">{testimonial.author}</div>
-                  <div className="text-sm text-slate-500">{testimonial.role}</div>
+                  <div className="font-semibold text-slate-900 dark:text-white">{testimonial.author}</div>
+                  <div className="text-sm text-slate-500 dark:text-slate-500">{testimonial.role}</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
-

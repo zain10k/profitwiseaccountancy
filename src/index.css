@@ -4,36 +4,35 @@
 
 @layer base {
   :root {
-    --background: 40 10% 88%; /* Even darker warm paper color for contrast */
-    --foreground: 222.2 47.4% 11.2%; /* slate-900 */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%; /* slate-900 */
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 40 20% 97%;
-    --popover-foreground: 222.2 47.4% 11.2%; /* slate-900 */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    /* Gold/Amber from Logo (#c4841e) - Exact match */
-    --primary: 37 73% 44%;
+    /* Rich Gold for Primary - More vibrant and saturated */
+    --primary: 38 75% 55%; 
     --primary-foreground: 0 0% 100%;
 
-    /* Light Blue/Grey for Secondary Actions */
+    /* Dark Navy/Slate for Secondary */
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%; /* slate-900 */
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Subtle Accent */
     --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%; /* slate-900 */
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 37 73% 44%;
+    --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
   }
@@ -74,23 +73,38 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground;
+    @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-color: transparent;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-@layer utilities {
-  .carousel-image-center-mobile {
-    background-position: center;
   }
   
-  @media (min-width: 640px) {
-    .carousel-image-center-mobile {
-      background-position: center top;
+  /* Smooth scroll handling by Lenis usually involves disabling native smooth scroll on html
+     to avoid conflicts, but we'll leave it unless it issues. */
+  html.lenis {
+    height: auto;
+  }
+  
+  .lenis.lenis-smooth {
+    scroll-behavior: auto;
+  }
+  
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 }
