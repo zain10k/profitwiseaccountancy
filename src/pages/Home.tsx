@@ -4,21 +4,19 @@ import { Testimonials } from '@/components/Testimonials'
 import { WhyChooseUs } from '@/components/WhyChooseUs'
 import { PartnersStrip } from '@/components/PartnersStrip'
 import { ValueProposition } from '@/components/ValueProposition'
-// import { Pricing } from '@/components/Pricing' // Commented out as per code
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
+import { AnimatedText } from '@/components/ui/AnimatedText'
 import { motion } from 'framer-motion'
 
 export function Home() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
       <HeroModern />
-      <PartnersStrip />
       <ValueProposition />
       <ServiceHighlights />
       <WhyChooseUs />
       <Testimonials />
-      {/* <Pricing /> */} {/* Hiding pricing for now to focus on brand redesign, or enable if needed */}
       
       {/* Final CTA Section */}
       <section className="bg-primary py-24 relative overflow-hidden">
@@ -30,9 +28,15 @@ export function Home() {
              viewport={{ once: true }}
              className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">
+            <AnimatedText
+              as="h2"
+              className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6"
+              highlightWords={['Control']}
+              start="top 85%"
+              stagger={0.025}
+            >
               Ready to Take Control?
-            </h2>
+            </AnimatedText>
             <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed">
               Join the hundreds of businesses who trust ProfitWise Accountants to handle their accounting, tax, and payroll needs.
             </p>
@@ -47,6 +51,8 @@ export function Home() {
           </motion.div>
         </Container>
       </section>
+
+      <PartnersStrip />
     </div>
   )
 }

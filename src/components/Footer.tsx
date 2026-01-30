@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Mail, MapPin, Phone, Linkedin } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
@@ -5,15 +6,15 @@ import { Container } from '@/components/ui/Container'
 export function Footer() {
   const location = useLocation()
 
-  const handleLinkClick = (path: string) => {
+  const handleLinkClick = useCallback((path: string) => {
     const basePath = path.split('#')[0]
     if (location.pathname === basePath && !path.includes('#')) {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }
-  }
+  }, [location.pathname])
 
   return (
-    <footer className="bg-slate-950 text-slate-400 border-t border-slate-900 font-light">
+    <footer className="bg-slate-900 text-slate-400 border-t border-slate-900 font-light">
       <Container className="py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           

@@ -1,47 +1,58 @@
 import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from '@/utils/gsap'
 
-gsap.registerPlugin(ScrollTrigger)
+function debounce<T extends (...args: any[]) => void>(func: T, wait: number): T {
+  let timeout: ReturnType<typeof setTimeout> | null = null
+  return ((...args: Parameters<T>) => {
+    if (timeout) clearTimeout(timeout)
+    timeout = setTimeout(() => func(...args), wait)
+  }) as T
+}
 
 export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      return
+    }
+
     const lenis = new Lenis({
-      lerp: 0.05, // Reduced from 0.1 for smoother, less aggressive smoothing
-      duration: 1.2, // Reduced from 1.5 for snappier response
+      lerp: 0.08, // Increased from 0.05 for better performance
+      duration: 1.2,
       smoothWheel: true,
-      wheelMultiplier: 0.8, // Reduce scroll sensitivity
+      wheelMultiplier: 0.8,
       touchMultiplier: 1.5,
+      syncTouch: false, /* Native touch scroll on mobile to prevent stutter with 3D scenes */
     })
 
     lenisRef.current = lenis
-
-    // Integrate Lenis with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update)
 
-    // Use GSAP's ticker for better performance (more efficient than RAF loop)
+    // Always start at the top when the app loads
+    lenis.scrollTo(0, { immediate: true })
+
     const tickerCallback = (time: number) => {
       lenis.raf(time * 1000)
     }
     gsap.ticker.add(tickerCallback)
-
-    // Disable GSAP's lag smoothing for better performance
     gsap.ticker.lagSmoothing(0)
 
-    // Update ScrollTrigger on resize
-    const handleResize = () => {
+    // Debounce resize handler for better performance
+    const handleResize = debounce(() => {
       ScrollTrigger.refresh()
-    }
-    window.addEventListener('resize', handleResize)
+    }, 150)
+
+    window.addEventListener('resize', handleResize, { passive: true })
 
     return () => {
       gsap.ticker.remove(tickerCallback)
       lenis.off('scroll', ScrollTrigger.update)
       lenis.destroy()
       window.removeEventListener('resize', handleResize)
+      lenisRef.current = null
     }
   }, [])
 

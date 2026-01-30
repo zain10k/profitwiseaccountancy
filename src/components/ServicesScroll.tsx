@@ -1,5 +1,5 @@
+import { useRef, memo } from 'react'
 import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion'
-import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Calculator, TrendingUp, FileText, Users, PieChart, Briefcase, Search, FileCheck, Scale } from 'lucide-react'
 
@@ -150,7 +150,7 @@ interface ServiceCardProps {
   progress: MotionValue<number>
 }
 
-function ServiceCard({ service, index, total, progress }: ServiceCardProps) {
+const ServiceCard = memo(function ServiceCard({ service, index, total, progress }: ServiceCardProps) {
     // Calculate the range for this card
     const rangeStart = index / total
     const rangeEnd = (index + 1) / total
@@ -215,12 +215,13 @@ function ServiceCard({ service, index, total, progress }: ServiceCardProps) {
                 <img 
                     src={service.image} 
                     alt={service.title}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                 />
             </div>
         </motion.div>
     )
-}
+})
 
 interface ProgressDotProps {
   index: number
@@ -228,7 +229,7 @@ interface ProgressDotProps {
   progress: MotionValue<number>
 }
 
-function ProgressDot({ index, total, progress }: ProgressDotProps) {
+const ProgressDot = memo(function ProgressDot({ index, total, progress }: ProgressDotProps) {
     const rangeStart = index / total
     const rangeEnd = (index + 1) / total
     
@@ -254,4 +255,4 @@ function ProgressDot({ index, total, progress }: ProgressDotProps) {
             style={{ scale, backgroundColor }}
         />
     )
-}
+})

@@ -1,33 +1,38 @@
-import { useRef, useLayoutEffect, Suspense } from 'react'
+import { useRef, useLayoutEffect, Suspense, useMemo } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { gsap } from 'gsap'
+import { gsap } from '@/utils/gsap'
 import Spline from '@splinetool/react-spline'
+import { useMagneticHover } from '@/hooks/useMagneticHover'
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 export function HeroModern() {
+  const [heroRef, isHeroVisible] = useIntersectionObserver({ threshold: 0.1 })
   const charsRef = useRef<HTMLSpanElement[]>([])
+  const partnerWrapRef = useRef<HTMLDivElement>(null)
+  const partnerLinkRef = useRef<HTMLAnchorElement>(null)
+  useMagneticHover(partnerWrapRef, partnerLinkRef)
 
-  // Split text into characters and store refs
-  const text = "Financial Clarity For Your Future"
-  const words = text.split(' ')
+  const text = useMemo(() => "Financial Clarity For Your Future", [])
+  const words = useMemo(() => text.split(' '), [text])
 
   useLayoutEffect(() => {
-    // Animate characters in with stagger
+    // Animate characters in with stagger - optimized
     gsap.fromTo(
       charsRef.current,
       { 
         opacity: 0, 
-        y: 50,
-        rotationX: -90
+        y: 40,
+        rotationX: -60
       },
       { 
         opacity: 1, 
         y: 0,
         rotationX: 0,
-        stagger: 0.03,
-        duration: 0.8,
-        ease: "power3.out",
-        delay: 0.3
+        stagger: 0.04,
+        duration: 0.7,
+        ease: "power2.out",
+        delay: 0.2
       }
     )
 
@@ -38,30 +43,33 @@ export function HeroModern() {
   }, [])
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-slate-900 text-white">
+    <div ref={heroRef as React.RefObject<HTMLDivElement>} className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
       {/* Spline 3D Scene */}
       <div className="absolute inset-0 z-0">
-        <Suspense fallback={
-          <div className="absolute inset-0 bg-slate-900 flex items-center justify-center">
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-              <div className="text-slate-400 text-sm tracking-widest uppercase animate-pulse">Loading Experience</div>
-            </div>
-          </div>
-        }>
-          <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode" />
-        </Suspense>
+        {!isHeroVisible ? null : (
+          <Suspense
+            fallback={
+              <div className="absolute inset-0 bg-transparent flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+                  <div className="text-slate-600 text-sm tracking-widest uppercase animate-pulse">
+                    Loading Experience
+                  </div>
+                </div>
+              </div>
+            }
+          >
+            <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3" />
+          </Suspense>
+        )}
       </div>
-      
-      {/* Overlay Gradient for readability - Reduced opacity to show more 3D detail */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-900/10 to-slate-900/60 pointer-events-none z-10" />
 
       {/* Main Content */}
       <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center sm:text-left sm:items-start sm:px-12 lg:px-24">
         
         {/* Badge */}
         <div className="mb-6 opacity-0 animate-[fadeIn_0.8s_ease-out_0.1s_forwards]">
-          <span className="inline-block py-1.5 px-4 rounded-full bg-white/15 backdrop-blur-md border border-white/30 text-sm font-medium tracking-wide text-white">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 backdrop-blur-md border border-primary/30 text-sm font-medium tracking-wide text-primary">
             Premium Financial Services
           </span>
         </div>
@@ -84,7 +92,7 @@ export function HeroModern() {
                     className={`inline-block ${
                       word === 'Financial' || word === 'Clarity'
                         ? 'text-primary'
-                        : 'text-white'
+                        : 'text-slate-900'
                     }`}
                     style={{ 
                       display: 'inline-block',
@@ -118,7 +126,7 @@ export function HeroModern() {
 
         {/* Description */}
         <p 
-          className="text-lg sm:text-2xl text-slate-200 max-w-2xl leading-relaxed mb-10 font-light opacity-0 animate-[fadeIn_0.8s_ease-out_0.6s_forwards]"
+          className="text-lg sm:text-2xl text-slate-700 max-w-2xl leading-relaxed mb-10 font-light opacity-0 animate-[fadeIn_0.8s_ease-out_0.6s_forwards]"
         >
           Elevating financial clarity for modern businesses. 
           Expert audit, tax, and advisory services tailored for growth.
@@ -128,18 +136,28 @@ export function HeroModern() {
         <div 
           className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto opacity-0 animate-[fadeIn_0.8s_ease-out_0.9s_forwards]"
         >
-          <Link 
-            to="/contact" 
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white rounded-full overflow-hidden transition-all hover:bg-slate-100 hover:shadow-lg hover:scale-105"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Partner with us <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </span>
-          </Link>
+          <div ref={partnerWrapRef} className="inline-flex">
+            <Link 
+              ref={partnerLinkRef}
+              to="/contact" 
+              className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white rounded-full overflow-hidden transition-all hover:bg-slate-100 hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--primary)_/_0.2)]"
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 h-full w-1/2 -left-1/2 animate-shine"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)',
+                }}
+              />
+              <span className="relative z-10 flex items-center gap-2">
+                Partner with us <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </div>
           
           <Link 
             to="/services" 
-            className="group inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white border border-white/40 rounded-full backdrop-blur-sm transition-all hover:bg-white/15 hover:border-white/60"
+            className="group inline-flex items-center justify-center px-8 py-4 text-base font-medium text-slate-900 border border-slate-300 rounded-full backdrop-blur-sm transition-all hover:bg-primary/10 hover:border-primary/60"
           >
             Explore Services
           </Link>
@@ -148,7 +166,7 @@ export function HeroModern() {
 
       {/* Scroll Indicator */}
       <div 
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/50 opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards]"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-slate-600/70 opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards]"
       >
         <div className="flex flex-col items-center gap-2 animate-bounce">
           <span className="text-xs uppercase tracking-widest">Scroll</span>
@@ -156,15 +174,6 @@ export function HeroModern() {
         </div>
       </div>
 
-      {/* Drifting Background Text */}
-      <div className="absolute top-1/2 left-0 w-full -translate-y-1/2 z-0 pointer-events-none overflow-hidden opacity-[0.03] flex select-none">
-         <div className="whitespace-nowrap text-[20vw] font-bold leading-none text-white animate-marquee-ltr shrink-0">
-            AUDIT • TAX • ADVISORY • GROWTH • COMPLIANCE •&nbsp;
-         </div>
-         <div className="whitespace-nowrap text-[20vw] font-bold leading-none text-white animate-marquee-ltr shrink-0">
-            AUDIT • TAX • ADVISORY • GROWTH • COMPLIANCE •&nbsp;
-         </div>
-      </div>
     </div>
   )
 }

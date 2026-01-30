@@ -1,20 +1,28 @@
+/* Import fonts with font-display: swap for better performance */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* Single source of truth for dark section backgrounds - seamless transitions (slate-900) */
+    --section-dark: #0f172a;
+
+    --background: 90 25% 96%;
     --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
+    --card: 50 20% 97%;
     --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
+    --popover: 50 20% 97%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Rich Gold for Primary - More vibrant and saturated */
-    --primary: 38 75% 55%; 
+    /* Rich Gold for Primary - More vibrant and saturated.
+       WCAG: Use text-primary on dark (section-dark) for large text/headings only (≥3:1).
+       Verify at contrast-ratio.org; avoid long body copy in primary on dark. */
+    --primary: 38 75% 55%;
     --primary-foreground: 0 0% 100%;
 
     /* Dark Navy/Slate for Secondary */
@@ -72,6 +80,9 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply bg-background;
+  }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -106,5 +117,12 @@
     to {
       opacity: 1;
     }
+  }
+}
+
+@layer utilities {
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 1rem 1rem;
   }
 }

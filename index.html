@@ -2,14 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
-    <link rel="apple-touch-icon" href="/Logo.svg" />
+    <link rel="icon" type="image/png" href="/Asset 3Logo Png.png" />
+    <link rel="apple-touch-icon" href="/Asset 3Logo Png.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="ProfitWise Accountants - Trusted Accountancy & Tax Services for Small & Medium Businesses. Expert tax planning, bookkeeping, and business advisory." />
     <title>ProfitWise Accountants | Professional Accountancy Services</title>
+    
+    <!-- DNS Prefetch for external domains -->
+    <link rel="dns-prefetch" href="https://elfsightcdn.com">
+    <link rel="dns-prefetch" href="https://images.pexels.com">
+    <link rel="dns-prefetch" href="https://prod.spline.design">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/Logo.svg" as="image" type="image/svg+xml">
+    
+    <!-- Font optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="https://elfsightcdn.com/platform.js" async></script>
   </body>
 </html>

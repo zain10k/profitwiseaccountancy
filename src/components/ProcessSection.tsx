@@ -1,6 +1,7 @@
+import { useRef, memo } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { MessageSquare, Search, FileCheck, Rocket, ArrowRight } from 'lucide-react'
+import { MessageSquare, Search, FileCheck, Rocket, ArrowRight, ChevronDown } from 'lucide-react'
+import { AnimatedText } from '@/components/ui/AnimatedText'
 
 const steps = [
   {
@@ -44,10 +45,9 @@ export function ProcessSection() {
   })
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-  // const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) // Reserved for future use
 
   return (
-    <section ref={containerRef} className="relative py-20 sm:py-32 bg-slate-50 overflow-hidden">
+    <section ref={containerRef} className="relative py-20 sm:py-32 bg-blue-50 overflow-hidden">
       
       {/* Background Decorative Elements */}
       <div className="absolute top-20 right-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
@@ -74,16 +74,28 @@ export function ProcessSection() {
           <span className="inline-block py-2 px-4 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide uppercase mb-4">
             Our Approach
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-            How We <span className="text-primary">Partner with You</span>
-          </h2>
-          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <AnimatedText
+            as="h2"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
+            highlightWords={['Partner']}
+            start="top 85%"
+            stagger={0.025}
+          >
+            How We Partner with You
+          </AnimatedText>
+          <AnimatedText
+            as="p"
+            className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+            mode="word"
+            start="top 85%"
+            delay={0.3}
+          >
             A proven methodology that transforms financial complexity into business clarity
-          </p>
+          </AnimatedText>
         </motion.div>
 
         {/* Process Steps */}
-        <div className="max-w-6xl mx-auto space-y-8 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-8 lg:gap-12">
+        <div className="max-w-6xl mx-auto space-y-8 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-8 lg:gap-12 sm:items-start">
           {steps.map((step, index) => (
             <ProcessCard key={step.number} step={step} index={index} />
           ))}
@@ -115,7 +127,7 @@ interface ProcessCardProps {
   index: number
 }
 
-function ProcessCard({ step, index }: ProcessCardProps) {
+const ProcessCard = memo(function ProcessCard({ step, index }: ProcessCardProps) {
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, { once: true, amount: 0.3 })
 
@@ -123,21 +135,24 @@ function ProcessCard({ step, index }: ProcessCardProps) {
     <motion.div
       ref={cardRef}
       className="relative group"
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      whileHover="hover"
       transition={{ 
-        duration: 0.7, 
-        delay: index * 0.15,
-        ease: [0.22, 1, 0.36, 1]
+        type: "spring",
+        stiffness: 50,
+        damping: 15,
+        mass: 1,
+        delay: index * 0.15
       }}
     >
-      <div className="relative bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:border-primary/20 transition-all duration-500 overflow-hidden h-full">
+      <div className="relative bg-slate-900 rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-700 hover:shadow-xl hover:border-primary/20 transition-all duration-500 overflow-hidden h-full">
         
         {/* Gradient Background on Hover */}
         <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
         
         {/* Step Number - Large Background */}
-        <div className="absolute top-4 right-4 text-[120px] font-bold text-slate-100 leading-none select-none">
+        <div className="absolute top-4 right-4 text-[120px] font-bold text-slate-800 leading-none select-none">
           {step.number}
         </div>
 
@@ -148,12 +163,37 @@ function ProcessCard({ step, index }: ProcessCardProps) {
 
         {/* Content */}
         <div className="relative">
-          <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 tracking-tight">
-            {step.title}
-          </h3>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            {step.description}
-          </p>
+          <div className="flex items-center justify-between w-full">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
+              {step.title}
+            </h3>
+            <motion.div
+              variants={{
+                visible: { opacity: 1, y: 0 },
+                hover: { opacity: 0, y: 10 }
+              }}
+              animate={{ y: [0, 5, 0] }}
+              transition={{ 
+                y: { repeat: Infinity, duration: 1.5, ease: "easeInOut" },
+                default: { duration: 0.2 }
+              }}
+              className="text-primary/50 mb-4"
+            >
+              <ChevronDown className="w-6 h-6" />
+            </motion.div>
+          </div>
+          <motion.div
+            variants={{
+                hover: { height: 'auto', opacity: 1 }
+            }}
+            initial={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="overflow-hidden"
+          >
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed pb-1">
+                {step.description}
+            </p>
+          </motion.div>
         </div>
 
         {/* Connecting Arrow (except last item) */}
@@ -171,4 +211,4 @@ function ProcessCard({ step, index }: ProcessCardProps) {
       </div>
     </motion.div>
   )
-}
+})
