@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Container } from '@/components/ui/Container'
 import { cn } from '@/utils/cn'
 

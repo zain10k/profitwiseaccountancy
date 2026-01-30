@@ -1,4 +1,4 @@
-import { useRef, Suspense, useMemo } from 'react'
+import { Suspense } from 'react'
 import { BarChart3, ShieldCheck, TrendingUp, Zap, ChevronDown } from 'lucide-react'
 import Spline from '@splinetool/react-spline'
 import { Container } from '@/components/ui/Container'

@@ -1,5 +1,5 @@
 import { useRef, useLayoutEffect, useMemo } from 'react'
-import { gsap, ScrollTrigger } from '@/utils/gsap'
+import { gsap } from '@/utils/gsap'
 
 interface UseScrollTextAnimationOptions {
   trigger?: string | Element | null
@@ -16,7 +16,7 @@ export function useScrollTextAnimation(
 ) {
   const charsRef = useRef<HTMLSpanElement[]>([])
   const words = useMemo(() => text.split(' '), [text])
-  
+
   const {
     trigger,
     start = 'top 80%',
@@ -32,24 +32,24 @@ export function useScrollTextAnimation(
     const ctx = gsap.context(() => {
       gsap.fromTo(
         charsRef.current,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 40,
-          rotationX: -60
+          rotationX: -60,
         },
-        { 
-          opacity: 1, 
+        {
+          opacity: 1,
           y: 0,
           rotationX: 0,
           stagger,
           duration,
           delay,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: trigger || charsRef.current[0]?.parentElement,
             start,
-            toggleActions: once ? "play none none none" : "play none none reverse"
-          }
+            toggleActions: once ? 'play none none none' : 'play none none reverse',
+          },
         }
       )
     })
@@ -63,7 +63,8 @@ export function useScrollTextAnimation(
         {words.map((word, wordIndex) => (
           <span key={wordIndex} className="inline-block mr-2 sm:mr-3">
             {word.split('').map((char, charIndex) => {
-              const globalIndex = words.slice(0, wordIndex).join('').length + wordIndex + charIndex
+              const globalIndex =
+                words.slice(0, wordIndex).join('').length + wordIndex + charIndex
               const isHighlighted = highlightWords?.includes(word)
               return (
                 <span
@@ -79,17 +80,18 @@ export function useScrollTextAnimation(
               )
             })}
             {wordIndex < words.length - 1 && (
-              <span 
+              <span
                 ref={(el) => {
                   if (el) {
-                    const globalIndex = words.slice(0, wordIndex + 1).join('').length + wordIndex
+                    const globalIndex =
+                      words.slice(0, wordIndex + 1).join('').length + wordIndex
                     charsRef.current[globalIndex] = el
                   }
                 }}
                 className="inline-block"
-                style={{ 
+                style={{
                   width: '0.25em',
-                  transformStyle: 'preserve-3d'
+                  transformStyle: 'preserve-3d',
                 }}
               >
                 {' '}

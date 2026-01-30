@@ -204,7 +204,7 @@ export function Header() {
                 closed: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
               }}
             >
-              {navItems.map((item, index) => {
+              {navItems.map((item) => {
                 const isActive = location.pathname === item.path
                 return (
                   <motion.div
