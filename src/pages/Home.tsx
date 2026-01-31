@@ -1,5 +1,6 @@
 import { HeroModern } from '@/components/HeroModern'
-import { ServiceHighlights } from '@/components/ServiceHighlights'
+import { AboutCompanySection } from '@/components/AboutCompanySection'
+import { ToolkitCarousel } from '@/components/ToolkitCarousel'
 import { Testimonials } from '@/components/Testimonials'
 import { WhyChooseUs } from '@/components/WhyChooseUs'
 import { PartnersStrip } from '@/components/PartnersStrip'
@@ -13,11 +14,12 @@ export function Home() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
       <HeroModern />
+      <AboutCompanySection />
       <ValueProposition />
-      <ServiceHighlights />
+      <ToolkitCarousel />
       <WhyChooseUs />
       <Testimonials />
-      
+
       {/* Final CTA Section */}
       <section className="bg-primary py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary-foreground/5 dark:bg-black/10 pattern-dots" />

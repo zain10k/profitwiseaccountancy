@@ -151,7 +151,7 @@ export function About() {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white rounded-2xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all group"
+                  className="rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-black border border-slate-700/50 hover:border-slate-600/70 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 group relative"
                   initial={{ opacity: 0, y: 50, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: '-50px' }}
@@ -163,20 +163,21 @@ export function About() {
                   }}
                   whileHover={{ y: -5, transition: { type: 'spring', stiffness: 300 } }}
                 >
-                  <div className="h-48 overflow-hidden">
+                  <div className="h-48 overflow-hidden relative">
                     <img
                       src={item.image}
                       alt={item.title}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none" aria-hidden />
                   </div>
-                  <div className="p-6">
-                    <div className="bg-primary/10 rounded-lg p-3 w-fit mb-4">
+                  <div className="p-6 relative">
+                    <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 w-fit mb-4">
                       <item.icon className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                    <p className="text-slate-600">{item.description}</p>
+                    <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                    <p className="text-slate-300 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
               ))}

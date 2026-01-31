@@ -140,13 +140,13 @@ export function HeroModern() {
             <Link 
               ref={partnerLinkRef}
               to="/contact" 
-              className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white rounded-full overflow-hidden transition-all hover:bg-slate-100 hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--primary)_/_0.2)]"
+              className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary-foreground bg-primary rounded-full overflow-hidden transition-all hover:brightness-110 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
             >
               <span
                 aria-hidden
                 className="pointer-events-none absolute inset-0 h-full w-1/2 -left-1/2 animate-shine"
                 style={{
-                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)',
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)',
                 }}
               />
               <span className="relative z-10 flex items-center gap-2">
@@ -157,7 +157,7 @@ export function HeroModern() {
           
           <Link 
             to="/services" 
-            className="group inline-flex items-center justify-center px-8 py-4 text-base font-medium text-slate-900 border border-slate-300 rounded-full backdrop-blur-sm transition-all hover:bg-primary/10 hover:border-primary/60"
+            className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white rounded-full border-2 border-slate-400 shadow-md transition-all hover:bg-slate-50 hover:border-primary/60 hover:shadow-lg"
           >
             Explore Services
           </Link>

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CookieBanner } from '@/components/CookieBanner'
 import { SmoothScroll } from '@/components/SmoothScroll'
 
 interface LayoutProps {
@@ -14,6 +15,7 @@ export function Layout({ children }: LayoutProps) {
         <Header />
         <main className="flex-1 relative z-0">{children}</main>
         <Footer />
+        <CookieBanner />
       </div>
     </SmoothScroll>
   )

@@ -49,6 +49,7 @@ export function Footer() {
               <li><Link to="/services" onClick={() => handleLinkClick('/services')} className="hover:text-primary transition-colors">Services</Link></li>
               <li><Link to="/partners" onClick={() => handleLinkClick('/partners')} className="hover:text-primary transition-colors">Partners</Link></li>
               <li><Link to="/contact" onClick={() => handleLinkClick('/contact')} className="hover:text-primary transition-colors">Get a Quote</Link></li>
+              <li><Link to="/faq" onClick={() => handleLinkClick('/faq')} className="hover:text-primary transition-colors">FAQs</Link></li>
             </ul>
           </div>
 
@@ -96,8 +97,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-slate-900 pt-8 text-center text-xs text-slate-600">
+        <div className="mt-16 border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>&copy; {new Date().getFullYear()} ProfitWise Accountants. All rights reserved.</p>
+          <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1" aria-label="Legal">
+            <Link to="/privacy" onClick={() => handleLinkClick('/privacy')} className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link to="/terms" onClick={() => handleLinkClick('/terms')} className="hover:text-primary transition-colors">Terms & Conditions</Link>
+            <Link to="/cookies" onClick={() => handleLinkClick('/cookies')} className="hover:text-primary transition-colors">Cookie Policy</Link>
+          </nav>
         </div>
       </Container>
     </footer>

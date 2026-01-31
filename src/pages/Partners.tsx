@@ -114,7 +114,7 @@ export function Partners() {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white p-8 rounded-2xl border-2 border-primary/20 hover:border-primary hover:shadow-lg transition-all duration-300"
+                className="group flex flex-col items-center p-8 rounded-2xl bg-gradient-to-br from-slate-800 via-slate-900 to-black border border-slate-700/50 hover:border-slate-600/70 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 relative overflow-hidden"
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -126,19 +126,22 @@ export function Partners() {
                 }}
                 whileHover={{ scale: 1.02, transition: { type: 'spring', stiffness: 300 } }}
               >
-                <div className="h-32 w-full flex items-center justify-center mb-6 p-4 bg-white rounded-lg">
-                  <img
-                    src={partner.logo}
-                    alt={`${partner.name} logo`}
-                    loading="lazy"
-                    className={`max-h-full max-w-full object-contain transition-all duration-300 ${partner.className ?? ''}`}
-                  />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" aria-hidden />
+                <div className="relative z-10 w-full flex flex-col items-center">
+                  <div className="h-32 w-full flex items-center justify-center mb-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                    <img
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      loading="lazy"
+                      className={`max-h-full max-w-full object-contain transition-all duration-300 ${partner.className ?? ''}`}
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors flex items-center gap-2">
+                    {partner.name}
+                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
+                  </h3>
+                  <p className="text-center text-slate-300 leading-relaxed">{partner.description}</p>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors flex items-center gap-2">
-                  {partner.name}
-                  <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h3>
-                <p className="text-center text-slate-600">{partner.description}</p>
               </motion.a>
             ))}
           </div>
