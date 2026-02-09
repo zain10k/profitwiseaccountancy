@@ -44,7 +44,7 @@ export function BusinessFinanceControl() {
   const title = useMemo(() => titles[activeTab], [titles, activeTab])
   const words = useMemo(() => title.split(' '), [title])
 
-  const runCharReveal = useCallback((titleText: string) => {
+  const runCharReveal = useCallback(() => {
     // Simplified: fade in entire title instead of character-by-character
     const titleElement = charsRef.current[0]?.parentElement?.parentElement
     if (!titleElement) return
@@ -82,8 +82,8 @@ export function BusinessFinanceControl() {
   }, [])
 
   useEffect(() => {
-    runCharReveal(title)
-  }, [activeTab, runCharReveal, title])
+    runCharReveal()
+  }, [activeTab, runCharReveal])
 
   useEffect(() => {
     if (activeTab !== 'Analyze') return
