@@ -90,6 +90,21 @@ export default {
         sans: ['Inter', 'sans-serif'],
         heading: ['Montserrat', 'sans-serif'], // Assuming we might add a font, or just use Inter
       },
+      fontSize: {
+        xs: ['0.7rem', { lineHeight: '1rem' }],
+        sm: ['0.8rem', { lineHeight: '1.25rem' }],
+        base: ['0.875rem', { lineHeight: '1.5rem' }], // 14px instead of 16px
+        lg: ['1rem', { lineHeight: '1.75rem' }], // 16px instead of 18px
+        xl: ['1.125rem', { lineHeight: '1.75rem' }], // 18px instead of 20px
+        '2xl': ['1.375rem', { lineHeight: '2rem' }], // 22px instead of 24px
+        '3xl': ['1.625rem', { lineHeight: '2.25rem' }], // 26px instead of 30px
+        '4xl': ['2rem', { lineHeight: '2.5rem' }], // 32px instead of 36px
+        '5xl': ['2.5rem', { lineHeight: '1' }], // 40px instead of 48px
+        '6xl': ['3rem', { lineHeight: '1' }], // 48px instead of 60px
+        '7xl': ['3.5rem', { lineHeight: '1' }], // 56px instead of 72px
+        '8xl': ['4rem', { lineHeight: '1' }], // 64px instead of 96px
+        '9xl': ['4.5rem', { lineHeight: '1' }], // 72px instead of 128px
+      },
       transitionDuration: {
         '400': '400ms',
       },

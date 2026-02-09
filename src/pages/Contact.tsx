@@ -9,9 +9,9 @@ import { contactFaqs } from '@/data/contactFaqs'
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
-/** Unique hero image - desk/workspace (no people). Not used elsewhere. */
+/** Unique hero image - professional handshake/meeting (contact/communication theme). Not used elsewhere. */
 const CONTACT_HERO_IMAGE =
-  'https://images.pexels.com/photos/7688327/pexels-photo-7688327.jpeg?auto=compress&cs=tinysrgb&w=1920'
+  'https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=1920'
 
 export function Contact() {
   return (

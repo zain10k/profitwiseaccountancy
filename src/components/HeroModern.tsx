@@ -1,13 +1,10 @@
-import { useRef, useLayoutEffect, Suspense, useMemo } from 'react'
+import { useRef, useLayoutEffect, useMemo } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { gsap } from '@/utils/gsap'
-import Spline from '@splinetool/react-spline'
 import { useMagneticHover } from '@/hooks/useMagneticHover'
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 export function HeroModern() {
-  const [heroRef, isHeroVisible] = useIntersectionObserver({ threshold: 0.1 })
   const charsRef = useRef<HTMLSpanElement[]>([])
   const partnerWrapRef = useRef<HTMLDivElement>(null)
   const partnerLinkRef = useRef<HTMLAnchorElement>(null)
@@ -43,25 +40,14 @@ export function HeroModern() {
   }, [])
 
   return (
-    <div ref={heroRef as React.RefObject<HTMLDivElement>} className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
-      {/* Spline 3D Scene */}
+    <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
+      {/* Hero Background Image */}
       <div className="absolute inset-0 z-0">
-        {!isHeroVisible ? null : (
-          <Suspense
-            fallback={
-              <div className="absolute inset-0 bg-transparent flex items-center justify-center">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-                  <div className="text-slate-600 text-sm tracking-widest uppercase animate-pulse">
-                    Loading Experience
-                  </div>
-                </div>
-              </div>
-            }
-          >
-            <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3" />
-          </Suspense>
-        )}
+        <img 
+          src="/title photo.png" 
+          alt="Professional accounting workspace" 
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Main Content */}
@@ -76,7 +62,7 @@ export function HeroModern() {
 
         {/* Animated H1 Heading */}
         <h1 
-          className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1]"
+          className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1] drop-shadow-2xl [text-shadow:_0_4px_12px_rgba(255,255,255,0.9)]"
           style={{ perspective: '1000px' }}
         >
           {words.map((word, wordIndex) => (
@@ -89,10 +75,10 @@ export function HeroModern() {
                     ref={(el) => {
                       if (el) charsRef.current[globalIndex] = el
                     }}
-                    className={`inline-block ${
+                    className={`inline-block drop-shadow-lg ${
                       word === 'Financial' || word === 'Clarity'
-                        ? 'text-primary'
-                        : 'text-slate-900'
+                        ? 'text-primary [text-shadow:_0_2px_8px_rgba(255,255,255,0.9)]'
+                        : 'text-slate-900 [text-shadow:_0_2px_8px_rgba(255,255,255,0.9)]'
                     }`}
                     style={{ 
                       display: 'inline-block',
@@ -126,7 +112,7 @@ export function HeroModern() {
 
         {/* Description */}
         <p 
-          className="text-lg sm:text-2xl text-slate-700 max-w-2xl leading-relaxed mb-10 font-light opacity-0 animate-[fadeIn_0.8s_ease-out_0.6s_forwards]"
+          className="text-lg sm:text-2xl text-slate-900 max-w-2xl leading-relaxed mb-10 font-medium opacity-0 animate-[fadeIn_0.8s_ease-out_0.6s_forwards] drop-shadow-lg [text-shadow:_0_2px_8px_rgba(255,255,255,0.8)]"
         >
           Elevating financial clarity for modern businesses. 
           Expert audit, tax, and advisory services tailored for growth.

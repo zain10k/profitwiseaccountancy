@@ -83,6 +83,11 @@
   html {
     @apply bg-background;
   }
+  html {
+    @apply bg-background;
+    font-size: 14px; /* Reduced from default 16px (12.5% smaller) */
+  }
+  
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
