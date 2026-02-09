@@ -43,13 +43,11 @@ export function AnimatedText({
         targets,
         { 
           opacity: 0, 
-          y: 40,
-          rotationX: -60
+          y: 20
         },
         { 
           opacity: 1, 
           y: 0,
-          rotationX: 0,
           stagger: actualStagger,
           duration,
           delay,
@@ -57,7 +55,8 @@ export function AnimatedText({
           scrollTrigger: {
             trigger: trigger || containerRef.current,
             start,
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            once: true
           }
         }
       )
@@ -70,7 +69,6 @@ export function AnimatedText({
     <Component 
       ref={containerRef as any}
       className={className}
-      style={{ perspective: '1000px' }}
     >
       {words.map((word, wordIndex) => {
         const isHighlighted = highlightWords.includes(word)
@@ -83,7 +81,6 @@ export function AnimatedText({
                   if (el) elementsRef.current[wordIndex] = el
                 }}
                 className={`inline-block ${isHighlighted ? 'text-primary' : ''}`}
-                style={{ transformStyle: 'preserve-3d' }}
               >
                 {word}
               </span>
@@ -103,7 +100,6 @@ export function AnimatedText({
                     if (el) elementsRef.current[globalIndex] = el
                   }}
                   className={`inline-block ${isHighlighted ? 'text-primary' : ''}`}
-                  style={{ transformStyle: 'preserve-3d' }}
                 >
                   {char}
                 </span>
@@ -119,8 +115,7 @@ export function AnimatedText({
                 }}
                 className="inline-block"
                 style={{ 
-                  width: '0.25em',
-                  transformStyle: 'preserve-3d'
+                  width: '0.25em'
                 }}
               >
                 {' '}

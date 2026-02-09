@@ -41,13 +41,7 @@
     "vitest": "^4.0.16"
   },
   "dependencies": {
-    "@react-three/drei": "^9.105.4",
-    "@react-three/fiber": "^8.16.8",
-    "@splinetool/loader": "^1.12.41",
-    "@splinetool/r3f-spline": "^1.0.2",
-    "@splinetool/react-spline": "^4.1.0",
     "@tanstack/react-query": "^5.90.16",
-    "@types/three": "^0.150.1",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.17",
@@ -58,7 +52,6 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.11.0",
     "tailwind-merge": "^3.4.0",
-    "three": "^0.150.1",
     "zustand": "^5.0.9"
   }
 }

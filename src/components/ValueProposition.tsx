@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
 import { BarChart3, ShieldCheck, TrendingUp, Zap, ChevronDown } from 'lucide-react'
-import Spline from '@splinetool/react-spline'
 import { Container } from '@/components/ui/Container'
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 import { motion } from 'framer-motion'
 
@@ -25,25 +22,13 @@ const valuePillars = [
 ]
 
 export function ValueProposition() {
-  const [splineRef, shouldLoadSpline] = useIntersectionObserver({ rootMargin: '200px' })
-
   return (
     <section className="relative py-32 sm:py-40 bg-slate-900 overflow-hidden">
-      {/* Background Spline Scene - lazy loaded */}
-      <div ref={splineRef as React.RefObject<HTMLDivElement>} className="absolute inset-0 z-0 opacity-30 pointer-events-none">
-        {shouldLoadSpline && (
-          <Suspense fallback={<div className="w-full h-full bg-transparent" />}>
-             {/* Using a finance-abstract sphere scene */}
-             <Spline scene="https://prod.spline.design/KQjjjnNtcywOg-kH/scene.splinecode" />
-          </Suspense>
-        )}
-      </div>
-      
-      {/* Gradient Overlay — smooth fade (gentler steps) */}
+      {/* Static gradient background */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none" 
         style={{
-          background: 'linear-gradient(to right, transparent 0%, transparent 100%)',
+          background: 'radial-gradient(ellipse at top right, rgba(251, 146, 60, 0.1) 0%, transparent 50%), radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.1) 0%, transparent 50%), linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%)',
         }}
       />
 
@@ -114,11 +99,7 @@ export function ValueProposition() {
                         visible: { opacity: 1, y: 0 },
                         hover: { opacity: 0, y: 10 }
                       }}
-                      animate={{ y: [0, 5, 0] }}
-                      transition={{ 
-                        y: { repeat: Infinity, duration: 1.5, ease: "easeInOut" },
-                        default: { duration: 0.2 }
-                      }}
+                      transition={{ duration: 0.2 }}
                       className="text-primary/50"
                     >
                       <ChevronDown className="w-5 h-5" />

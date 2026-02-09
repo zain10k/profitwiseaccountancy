@@ -14,20 +14,24 @@ export function HeroModern() {
   const words = useMemo(() => text.split(' '), [text])
 
   useLayoutEffect(() => {
-    // Animate characters in with stagger - optimized
+    // Simplified word-by-word animation instead of character-by-character
+    const wordElements = words.map((_, wordIndex) => {
+      const startIdx = words.slice(0, wordIndex).join('').length + wordIndex
+      const endIdx = startIdx + words[wordIndex].length
+      return charsRef.current.slice(startIdx, endIdx).filter(Boolean)
+    }).filter(arr => arr.length > 0)
+
     gsap.fromTo(
-      charsRef.current,
+      wordElements,
       { 
         opacity: 0, 
-        y: 40,
-        rotationX: -60
+        y: 20
       },
       { 
         opacity: 1, 
         y: 0,
-        rotationX: 0,
-        stagger: 0.04,
-        duration: 0.7,
+        stagger: 0.1,
+        duration: 0.5,
         ease: "power2.out",
         delay: 0.2
       }
@@ -35,9 +39,9 @@ export function HeroModern() {
 
     // Cleanup
     return () => {
-      gsap.killTweensOf(charsRef.current)
+      wordElements.forEach(word => gsap.killTweensOf(word))
     }
-  }, [])
+  }, [words])
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
@@ -47,6 +51,8 @@ export function HeroModern() {
           src="/title photo.png" 
           alt="Professional accounting workspace" 
           className="w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
         />
       </div>
 

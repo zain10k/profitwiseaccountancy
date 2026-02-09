@@ -1,7 +1,7 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/utils/cn'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
@@ -9,16 +9,24 @@ import { Container } from '@/components/ui/Container'
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { scrollY } = useScroll()
   const location = useLocation()
+  const tickingRef = useRef(false)
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    if (latest > 50) {
-      setIsScrolled(true)
-    } else {
-      setIsScrolled(false)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!tickingRef.current) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY || window.pageYOffset
+          setIsScrolled(scrollY > 50)
+          tickingRef.current = false
+        })
+        tickingRef.current = true
+      }
     }
-  })
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navItems = useMemo(
     () => [
@@ -70,6 +78,7 @@ export function Header() {
               scale: isScrolled ? 1.05 : 1,
             }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            loading="eager"
           />
         </Link>
 

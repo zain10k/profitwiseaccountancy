@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2, ArrowRight } from 'lucide-react'
 import { allServices, getServiceImage } from '@/pages/Services'
@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button'
 import type { LucideIcon } from 'lucide-react'
 
 const AUTO_PLAY_DURATION_MS = 5000
-const TICK_INTERVAL_MS = 50
+const TICK_INTERVAL_MS = 100
 const PROGRESS_INCREMENT = 100 / (AUTO_PLAY_DURATION_MS / TICK_INTERVAL_MS)
 
 interface ToolkitCategory {
@@ -46,39 +46,90 @@ export function ToolkitCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [progress, setProgress] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const rafRef = useRef<number | null>(null)
+  const lastTickRef = useRef<number>(0)
+  const containerRef = useRef<HTMLElement>(null)
 
   const totalTabs = toolkitData.length
 
   const handleTabClick = useCallback((index: number) => {
     setActiveIndex(index)
     setProgress(0)
+    lastTickRef.current = performance.now()
   }, [])
 
   const handleMouseEnter = useCallback(() => setIsPaused(true), [])
   const handleMouseLeave = useCallback(() => setIsPaused(false), [])
 
+  // Intersection Observer to pause when not in viewport
   useEffect(() => {
-    if (isPaused) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      { threshold: 0.1 }
+    )
 
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + PROGRESS_INCREMENT
-        if (next >= 100) {
-          setActiveIndex((i) => (i + 1) % totalTabs)
-          return 0
-        }
-        return next
-      })
-    }, TICK_INTERVAL_MS)
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
 
-    return () => clearInterval(interval)
-  }, [activeIndex, isPaused, totalTabs])
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current)
+      }
+    }
+  }, [])
+
+  // RAF-based progress animation
+  useEffect(() => {
+    if (isPaused || !isInView) {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+        rafRef.current = null
+      }
+      return
+    }
+
+    const tick = (currentTime: number) => {
+      if (lastTickRef.current === 0) {
+        lastTickRef.current = currentTime
+      }
+
+      const elapsed = currentTime - lastTickRef.current
+      if (elapsed >= TICK_INTERVAL_MS) {
+        setProgress((prev) => {
+          const next = prev + PROGRESS_INCREMENT
+          if (next >= 100) {
+            setActiveIndex((i) => (i + 1) % totalTabs)
+            lastTickRef.current = currentTime
+            return 0
+          }
+          lastTickRef.current = currentTime
+          return next
+        })
+      }
+
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+    lastTickRef.current = performance.now()
+
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+        rafRef.current = null
+      }
+    }
+  }, [activeIndex, isPaused, isInView, totalTabs])
 
   const activeCategory = toolkitData[activeIndex]
   const IconComponent = activeCategory.icon
 
   return (
-    <section className="w-full min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
+    <section ref={containerRef} className="w-full min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
       <div className="max-w-6xl mx-auto">
         {/* Top Navigation - Tabs */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-0 border-b border-slate-200 dark:border-slate-700 mb-6">

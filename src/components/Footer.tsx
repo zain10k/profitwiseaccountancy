@@ -33,6 +33,7 @@ export function Footer() {
                 src="/Logo.svg" 
                 alt="ProfitWise Accountants" 
                 className="h-16 w-auto opacity-90 hover:opacity-100 transition-opacity"
+                loading="eager"
               />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">

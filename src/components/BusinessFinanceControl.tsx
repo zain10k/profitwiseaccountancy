@@ -1,11 +1,9 @@
-import { useRef, useState, useEffect, useCallback, Suspense, useMemo } from 'react'
+import { useRef, useState, useEffect, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from '@/utils/gsap'
-import Spline from '@splinetool/react-spline'
 import { Database, FileCheck, Zap, Target } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { cn } from '@/utils/cn'
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 const TABS = ['Analyze', 'Plan', 'Grow'] as const
 type TabId = (typeof TABS)[number]
@@ -37,7 +35,6 @@ export function BusinessFinanceControl() {
   const activeIndex = TABS.indexOf(activeTab)
   const charsRef = useRef<HTMLSpanElement[]>([])
   const statRefs = useRef<(HTMLSpanElement | null)[]>([])
-  const [sectionRef, shouldLoadSpline] = useIntersectionObserver({ rootMargin: '200px' })
 
   const titles: Record<TabId, string> = useMemo(() => ({
     Analyze: 'Data Health',
@@ -48,19 +45,17 @@ export function BusinessFinanceControl() {
   const words = useMemo(() => title.split(' '), [title])
 
   const runCharReveal = useCallback((titleText: string) => {
-    gsap.killTweensOf(charsRef.current)
-    const n = titleText.replace(/\s/g, '').length
-    const chars = charsRef.current.filter(Boolean).slice(0, n)
-    if (!chars.length) return
-    // Reduced stagger and duration for better performance
+    // Simplified: fade in entire title instead of character-by-character
+    const titleElement = charsRef.current[0]?.parentElement?.parentElement
+    if (!titleElement) return
+    
     gsap.fromTo(
-      chars,
-      { opacity: 0, y: 20 },
+      titleElement,
+      { opacity: 0, y: 10 },
       {
         opacity: 1,
         y: 0,
-        stagger: 0.05,
-        duration: 0.5,
+        duration: 0.4,
         ease: 'power2.out',
       }
     )
@@ -98,35 +93,13 @@ export function BusinessFinanceControl() {
 
   return (
     <section 
-      ref={sectionRef}
       className="relative py-24 md:py-32 bg-slate-950 overflow-hidden"
     >
-      {/* Spline background – rotation syncs to active tab, lazy loaded */}
-      {shouldLoadSpline && (
-        <div
-          className="absolute inset-0 z-0 pointer-events-none transition-transform duration-700 ease-out"
-          style={{
-            transform: `perspective(1200px) rotateY(${activeIndex * 18}deg) scale(1.15)`,
-            transformOrigin: '60% 50%',
-            willChange: 'transform',
-          }}
-        >
-          <div className="absolute inset-0 opacity-40">
-            <Suspense
-              fallback={
-                <div className="w-full h-full bg-slate-950 flex items-center justify-center" />
-              }
-            >
-              <Spline scene="https://prod.spline.design/KQjjjnNtcywOg-kH/scene.splinecode" />
-            </Suspense>
-          </div>
-        </div>
-      )}
+      {/* Static gradient background */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          background:
-            'linear-gradient(90deg, rgba(2,6,23,0.92) 0%, rgba(2,6,23,0.6) 45%, rgba(2,6,23,0.3) 70%, transparent 100%)',
+          background: 'radial-gradient(ellipse at top right, rgba(251, 146, 60, 0.15) 0%, transparent 50%), radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.15) 0%, transparent 50%), linear-gradient(90deg, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 45%, rgba(2,6,23,0.7) 70%, transparent 100%)',
         }}
       />
 
