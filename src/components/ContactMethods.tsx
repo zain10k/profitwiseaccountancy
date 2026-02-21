@@ -5,9 +5,9 @@ const contactMethods = [
   {
     icon: Phone,
     title: 'Call Us',
-    content: '+44 7939 018799',
+    content: '+44 (0) 7405 395139',
     subtext: 'Mon-Fri, 9am-6pm',
-    href: 'tel:+447939018799',
+    href: 'tel:+447405395139',
     isExternal: false,
   },
   {
