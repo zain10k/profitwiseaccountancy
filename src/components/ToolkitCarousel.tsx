@@ -32,6 +32,19 @@ const tabLabelMap: Record<string, string> = {
   'wills-trust-probate': 'Wills & Probate',
 }
 
+/** Shorter labels for mobile so tabs fit and stay readable. */
+const tabLabelMapMobile: Record<string, string> = {
+  tax: 'Tax',
+  bookkeeping: 'Bookkeeping',
+  'vat-investigation': 'VAT',
+  payroll: 'Payroll',
+  management: 'Management',
+  advisory: 'Advisory',
+  formation: 'Formation',
+  'self-assessment': 'Self Assess.',
+  'wills-trust-probate': 'Wills & Probate',
+}
+
 const toolkitData: ToolkitCategory[] = allServices.map((service) => ({
   id: service.id,
   title: tabLabelMap[service.id] ?? service.title,
@@ -129,52 +142,58 @@ export function ToolkitCarousel() {
   const IconComponent = activeCategory.icon
 
   return (
-    <section ref={containerRef} className="w-full min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-      <div className="max-w-6xl mx-auto">
-        {/* Top Navigation - Tabs */}
-        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-0 border-b border-slate-200 dark:border-slate-700 mb-6">
-          {toolkitData.map((category, index) => {
-            const Icon = category.icon
-            const isActive = index === activeIndex
-            return (
-              <button
-                key={category.id}
-                type="button"
-                onClick={() => handleTabClick(index)}
-                className={`
-                  relative flex items-center gap-2 px-4 sm:px-6 py-4 text-left font-medium transition-colors
-                  min-w-0 sm:min-w-[140px]
-                  ${isActive ? 'text-primary bg-white dark:bg-slate-800 shadow-lg' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}
-                `}
-                aria-pressed={isActive}
-                aria-label={`Show ${category.title} toolkit`}
-              >
-                <Icon
-                  className="h-5 w-5 shrink-0"
-                  aria-hidden
-                />
-                <span className="truncate">{category.title}</span>
-                {isActive && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                    initial={false}
-                    animate={{ width: `${progress}%` }}
-                    transition={{ duration: TICK_INTERVAL_MS / 1000, ease: 'linear' }}
+    <section ref={containerRef} className="w-full min-w-0 min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center overflow-x-hidden">
+      <div className="max-w-6xl mx-auto w-full min-w-0">
+        {/* Top Navigation - Tabs: scrollable on mobile, full labels on sm+ */}
+        <div className="border-b border-slate-200 dark:border-slate-700 mb-6 overflow-x-auto overflow-y-hidden -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex sm:flex-row sm:flex-wrap gap-2 sm:gap-0 min-w-0">
+            {toolkitData.map((category, index) => {
+              const Icon = category.icon
+              const isActive = index === activeIndex
+              const labelMobile = tabLabelMapMobile[category.id] ?? category.title
+              const labelDesktop = category.title
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => handleTabClick(index)}
+                  className={`
+                    relative flex items-center gap-2 px-4 sm:px-6 py-4 text-left font-medium transition-colors shrink-0
+                    min-w-0 sm:min-w-[140px]
+                    ${isActive ? 'text-primary bg-white dark:bg-slate-800 shadow-lg' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}
+                  `}
+                  aria-pressed={isActive}
+                  aria-label={`Show ${labelDesktop} toolkit`}
+                  title={labelDesktop}
+                >
+                  <Icon
+                    className="h-5 w-5 shrink-0"
+                    aria-hidden
                   />
-                )}
-              </button>
-            )
-          })}
+                  <span className="truncate sm:inline hidden">{labelDesktop}</span>
+                  <span className="truncate sm:hidden">{labelMobile}</span>
+                  {isActive && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 h-0.5 bg-primary"
+                      initial={false}
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: TICK_INTERVAL_MS / 1000, ease: 'linear' }}
+                    />
+                  )}
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* Content Display - Card */}
         <div
-          className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden"
+          className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden min-w-0"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 sm:p-8 lg:p-10">
-            <div className="flex flex-col justify-center min-h-[280px] lg:min-h-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 sm:p-8 lg:p-10 min-w-0">
+            <div className="flex flex-col justify-center min-h-[280px] lg:min-h-0 min-w-0 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -182,31 +201,31 @@ export function ToolkitCarousel() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className="space-y-4"
+                  className="space-y-4 min-w-0"
                 >
-                  <div className="flex items-center gap-2 text-primary">
-                    <IconComponent className="h-6 w-6" aria-hidden />
-                    <span className="text-sm font-semibold uppercase tracking-wide">
+                  <div className="flex items-center gap-2 text-primary min-w-0">
+                    <IconComponent className="h-6 w-6 shrink-0" aria-hidden />
+                    <span className="text-sm font-semibold uppercase tracking-wide truncate">
                       {activeCategory.title}
                     </span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white break-words">
                     {activeCategory.headline}
                   </h2>
-                  <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed break-words min-w-0">
                     {activeCategory.description}
                   </p>
-                  <ul className="space-y-2 pt-2">
+                  <ul className="space-y-2 pt-2 min-w-0">
                     {activeCategory.features.map((feature, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-2 text-slate-700 dark:text-slate-300"
+                        className="flex items-center gap-2 text-slate-700 dark:text-slate-300 min-w-0"
                       >
                         <CheckCircle2
                           className="h-5 w-5 shrink-0 text-primary"
                           aria-hidden
                         />
-                        <span>{feature}</span>
+                        <span className="break-words min-w-0">{feature}</span>
                       </li>
                     ))}
                   </ul>

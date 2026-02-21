@@ -124,14 +124,12 @@ export function HeroModern() {
           Expert audit, tax, and advisory services tailored for growth.
         </p>
 
-        {/* CTA Buttons */}
-        <div 
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto opacity-0 animate-[fadeIn_0.8s_ease-out_0.9s_forwards]"
-        >
-          <div ref={partnerWrapRef} className="inline-flex">
-            <Link 
+        {/* CTA Buttons - centered on mobile, left-aligned from sm up */}
+        <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-4 items-center sm:items-start opacity-0 animate-[fadeIn_0.8s_ease-out_0.9s_forwards]">
+          <div ref={partnerWrapRef} className="flex justify-center sm:justify-start w-full sm:w-auto">
+            <Link
               ref={partnerLinkRef}
-              to="/contact" 
+              to="/contact"
               className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary-foreground bg-primary rounded-full overflow-hidden transition-all hover:brightness-110 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
             >
               <span
@@ -146,10 +144,9 @@ export function HeroModern() {
               </span>
             </Link>
           </div>
-          
-          <Link 
-            to="/services" 
-            className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white rounded-full border-2 border-slate-400 shadow-md transition-all hover:bg-slate-50 hover:border-primary/60 hover:shadow-lg"
+          <Link
+            to="/services"
+            className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white rounded-full border-2 border-slate-400 shadow-md transition-all hover:bg-slate-50 hover:border-primary/60 hover:shadow-lg w-full sm:w-auto sm:max-w-none max-w-[min(100%,20rem)]"
           >
             Explore Services
           </Link>

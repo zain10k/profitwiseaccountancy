@@ -131,3 +131,11 @@
     background-size: 1rem 1rem;
   }
 }
+
+/* Home cards: extended form on phone — descriptions visible by default */
+@media (max-width: 639px) {
+  .mobile-extended-description {
+    height: auto !important;
+    opacity: 1 !important;
+  }
+}

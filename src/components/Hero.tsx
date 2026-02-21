@@ -42,7 +42,7 @@ export function Hero() {
             ProfitWise helps ambitious businesses navigate complex financial landscapes with proactive advice, precision bookkeeping, and strategic tax planning.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center lg:justify-start lg:items-start">
             <Button to="/contact" size="lg" className="shadow-xl shadow-primary/20">
               Get a Free Consultation
               <ArrowRight className="ml-2 h-5 w-5" />

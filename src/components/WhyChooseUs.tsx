@@ -1,4 +1,4 @@
-import { Award, ShieldCheck, Clock, Check, BarChart3, Smartphone, ChevronDown } from 'lucide-react'
+import { Award, ShieldCheck, Clock, Check, BarChart3, Smartphone } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { AnimatedText } from '@/components/ui/AnimatedText'
@@ -75,7 +75,7 @@ export function WhyChooseUs() {
           </AnimatedText>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {features.map((feature, index) => (
             <motion.div
               key={feature.name}
@@ -99,7 +99,7 @@ export function WhyChooseUs() {
                   transition: { type: "spring", stiffness: 300, damping: 15 }
                 }
               }}
-              className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-8 rounded-2xl border border-slate-700/50 hover:border-slate-600/70 hover:shadow-2xl hover:shadow-primary/20 hover:ring-1 hover:ring-white/10 transition-all duration-300 group cursor-pointer relative overflow-hidden flex flex-col items-start w-full"
+              className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-6 sm:p-8 rounded-2xl border border-slate-700/50 hover:border-slate-600/70 hover:shadow-2xl hover:shadow-primary/20 hover:ring-1 hover:ring-white/10 transition-all duration-300 group cursor-pointer relative overflow-hidden flex flex-col items-start w-full min-w-0"
             >
               {/* Metallic glare - visible only on hover */}
               <div
@@ -112,7 +112,7 @@ export function WhyChooseUs() {
                 initial={false}
               />
               
-              <div className="w-full flex items-start justify-between">
+              <div className="w-full flex items-start">
                 <motion.div 
                   className="h-12 w-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6 relative z-10 shrink-0"
                   variants={{
@@ -130,21 +130,6 @@ export function WhyChooseUs() {
                   >
                     <feature.icon className="h-6 w-6" />
                   </motion.div>
-                </motion.div>
-
-                <motion.div
-                  variants={{
-                    visible: { opacity: 1, y: 0 },
-                    hover: { opacity: 0, y: 10 }
-                  }}
-                  animate={{ y: [0, 5, 0] }}
-                  transition={{ 
-                    y: { repeat: Infinity, duration: 1.5, ease: "easeInOut" },
-                    default: { duration: 0.2 }
-                  }}
-                  className="text-primary/50"
-                >
-                  <ChevronDown className="w-5 h-5" />
                 </motion.div>
               </div>
               
@@ -165,7 +150,7 @@ export function WhyChooseUs() {
                   hover: { height: 'auto', opacity: 1 }
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative z-10 overflow-hidden w-full"
+                className="relative z-10 overflow-hidden w-full mobile-extended-description"
               >
                 <p className="text-slate-300 leading-relaxed pb-2">
                   {feature.description}

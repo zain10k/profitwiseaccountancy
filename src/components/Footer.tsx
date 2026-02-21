@@ -16,10 +16,10 @@ export function Footer() {
   return (
     <footer className="bg-slate-900 text-slate-400 border-t border-slate-900 font-light">
       <Container className="py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 text-center md:text-left">
           
           {/* Company Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 flex flex-col items-center md:items-start">
             <Link 
               to="/" 
               onClick={() => {
@@ -42,7 +42,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="mb-6 text-sm font-semibold text-white uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-3 text-sm">
               <li><Link to="/" onClick={() => handleLinkClick('/')} className="hover:text-primary transition-colors">Home</Link></li>
@@ -55,7 +55,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="mb-6 text-sm font-semibold text-white uppercase tracking-wider">Services</h3>
             <ul className="space-y-3 text-sm">
               <li><Link to="/services#tax" onClick={() => handleLinkClick('/services#tax')} className="hover:text-primary transition-colors">Tax Planning</Link></li>
@@ -68,22 +68,22 @@ export function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="mb-6 text-sm font-semibold text-white uppercase tracking-wider">Contact</h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
+            <ul className="space-y-4 text-sm flex flex-col items-center md:items-start">
+              <li className="flex items-start gap-3 justify-center md:justify-start">
                 <MapPin className="h-5 w-5 shrink-0 text-primary" />
-                <span className="leading-relaxed">12 Swale Close<br />Aveley, Essex<br />RM15 4LX</span>
+                <span className="leading-relaxed text-center md:text-left">12 Swale Close<br />Aveley, Essex<br />RM15 4LX</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 justify-center md:justify-start">
                 <Phone className="h-5 w-5 shrink-0 text-primary" />
                 <span>+44 (0) 7405 395139</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 justify-center md:justify-start">
                 <Mail className="h-5 w-5 shrink-0 text-primary" />
                 <a href="mailto:info@profitwiseaccountants.com" className="hover:text-white transition-colors">info@profitwiseaccountants.com</a>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 justify-center md:justify-start">
                 <Linkedin className="h-5 w-5 shrink-0 text-primary" />
                 <a 
                   href="https://www.linkedin.com/company/profitwiseaccountants/?viewAsMember=true" 
@@ -98,7 +98,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="mt-16 border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
           <p>&copy; {new Date().getFullYear()} ProfitWise Accountants. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1" aria-label="Legal">
             <Link to="/privacy" onClick={() => handleLinkClick('/privacy')} className="hover:text-primary transition-colors">Privacy Policy</Link>

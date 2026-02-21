@@ -1,4 +1,4 @@
-import { BarChart3, ShieldCheck, TrendingUp, Zap, ChevronDown } from 'lucide-react'
+import { BarChart3, ShieldCheck, TrendingUp, Zap } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 import { motion } from 'framer-motion'
@@ -33,10 +33,10 @@ export function ValueProposition() {
       />
 
       <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center">
           
           {/* Left Column: Animated Heading */}
-          <div>
+          <div className="w-full">
              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold tracking-wide uppercase mb-6">
                 <Zap className="w-4 h-4" />
                 <span>Our Philosophy</span>
@@ -63,12 +63,12 @@ export function ValueProposition() {
              </AnimatedText>
           </div>
 
-          {/* Right Column: Value Pillars List */}
-          <div className="space-y-8">
+          {/* Right Column: Value Pillars List - full width single column on mobile */}
+          <div className="space-y-4 sm:space-y-8 w-full">
             {valuePillars.map((pillar, index) => (
               <motion.div 
                 key={index} 
-                className="group flex gap-5 p-4 rounded-xl bg-transparent border border-transparent hover:border-primary/30 transition-colors duration-300 relative cursor-pointer"
+                className="group flex gap-5 p-5 sm:p-4 rounded-xl bg-transparent border border-transparent hover:border-primary/30 transition-colors duration-300 relative cursor-pointer w-full"
                 initial="hidden"
                 whileInView="visible"
                 whileHover="hover"
@@ -90,21 +90,9 @@ export function ValueProposition() {
                   </div>
                 </div>
                 <div className="flex-grow">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                      {pillar.title}
-                    </h3>
-                    <motion.div
-                      variants={{
-                        visible: { opacity: 1, y: 0 },
-                        hover: { opacity: 0, y: 10 }
-                      }}
-                      transition={{ duration: 0.2 }}
-                      className="text-primary/50"
-                    >
-                      <ChevronDown className="w-5 h-5" />
-                    </motion.div>
-                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                    {pillar.title}
+                  </h3>
                   <motion.div
                     variants={{
                         hidden: { height: 0, opacity: 0 },
@@ -112,7 +100,7 @@ export function ValueProposition() {
                         hover: { height: 'auto', opacity: 1 }
                     }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="overflow-hidden"
+                    className="overflow-hidden mobile-extended-description"
                   >
                     <p className="text-slate-300 leading-relaxed text-sm sm:text-base pb-1">
                       {pillar.description}

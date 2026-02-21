@@ -170,7 +170,7 @@ export function Partners() {
             <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed">
               Join the hundreds of businesses who trust ProfitWise Accountants to handle their accounting, tax, and payroll needs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-stretch">
               <Button
                 to="/contact"
                 className="bg-white text-primary hover:bg-slate-100 shadow-xl border-none text-lg h-14 px-10"
