@@ -1,14 +1,21 @@
 import { useRef, useLayoutEffect, useMemo } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import Spline from '@splinetool/react-spline'
 import { gsap } from '@/utils/gsap'
 import { useMagneticHover } from '@/hooks/useMagneticHover'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export function HeroModern() {
   const charsRef = useRef<HTMLSpanElement[]>([])
   const partnerWrapRef = useRef<HTMLDivElement>(null)
   const partnerLinkRef = useRef<HTMLAnchorElement>(null)
   useMagneticHover(partnerWrapRef, partnerLinkRef)
+
+  // Show Spline hero only between 1100px and 1700px viewport width.
+  const isDesktop = useMediaQuery('(min-width: 1100px)')
+  const isVeryLarge = useMediaQuery('(min-width: 1700px)')
+  const showSpline = isDesktop && !isVeryLarge
 
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
@@ -45,15 +52,19 @@ export function HeroModern() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
-      {/* Hero Background Image */}
+      {/* Hero Background Visual */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/title photo.png" 
-          alt="Professional accounting workspace" 
-          className="w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-        />
+        {showSpline ? (
+          <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3" />
+        ) : (
+          <img 
+            src="/title photo.png" 
+            alt="Professional accounting workspace" 
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+          />
+        )}
       </div>
 
       {/* Main Content */}
