@@ -1,16 +1,13 @@
-import { useRef, useLayoutEffect, useMemo } from 'react'
+import { useRef, useMemo } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Spline from '@splinetool/react-spline'
-import { gsap } from '@/utils/gsap'
-import { useMagneticHover } from '@/hooks/useMagneticHover'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export function HeroModern() {
   const charsRef = useRef<HTMLSpanElement[]>([])
   const partnerWrapRef = useRef<HTMLDivElement>(null)
   const partnerLinkRef = useRef<HTMLAnchorElement>(null)
-  useMagneticHover(partnerWrapRef, partnerLinkRef)
 
   // Show Spline hero only between 1100px and 1700px viewport width.
   const isDesktop = useMediaQuery('(min-width: 1100px)')
@@ -19,36 +16,6 @@ export function HeroModern() {
 
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
-
-  useLayoutEffect(() => {
-    // Simplified word-by-word animation instead of character-by-character
-    const wordElements = words.map((_, wordIndex) => {
-      const startIdx = words.slice(0, wordIndex).join('').length + wordIndex
-      const endIdx = startIdx + words[wordIndex].length
-      return charsRef.current.slice(startIdx, endIdx).filter(Boolean)
-    }).filter(arr => arr.length > 0)
-
-    gsap.fromTo(
-      wordElements,
-      { 
-        opacity: 0, 
-        y: 20
-      },
-      { 
-        opacity: 1, 
-        y: 0,
-        stagger: 0.1,
-        duration: 0.5,
-        ease: "power2.out",
-        delay: 0.2
-      }
-    )
-
-    // Cleanup
-    return () => {
-      wordElements.forEach(word => gsap.killTweensOf(word))
-    }
-  }, [words])
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
@@ -71,7 +38,7 @@ export function HeroModern() {
       <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center sm:text-left sm:items-start sm:px-12 lg:px-24">
         
         {/* Badge */}
-        <div className="mb-6 opacity-0 animate-[fadeIn_0.8s_ease-out_0.1s_forwards]">
+        <div className="mb-6">
           <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 backdrop-blur-md border border-primary/30 text-sm font-medium tracking-wide text-primary">
             Premium Financial Services
           </span>
@@ -129,14 +96,14 @@ export function HeroModern() {
 
         {/* Description */}
         <p 
-          className="text-lg sm:text-2xl text-slate-900 max-w-2xl leading-relaxed mb-10 font-medium opacity-0 animate-[fadeIn_0.8s_ease-out_0.6s_forwards] drop-shadow-lg [text-shadow:_0_2px_8px_rgba(255,255,255,0.8)]"
+          className="text-lg sm:text-2xl text-slate-900 max-w-2xl leading-relaxed mb-10 font-medium drop-shadow-lg [text-shadow:_0_2px_8px_rgba(255,255,255,0.8)]"
         >
           Elevating financial clarity for modern businesses. 
           Expert audit, tax, and advisory services tailored for growth.
         </p>
 
         {/* CTA Buttons - centered on mobile, left-aligned from sm up */}
-        <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-4 items-center sm:items-start opacity-0 animate-[fadeIn_0.8s_ease-out_0.9s_forwards]">
+        <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-4 items-center sm:items-start">
           <div ref={partnerWrapRef} className="flex justify-center sm:justify-start w-full sm:w-auto">
             <Link
               ref={partnerLinkRef}
@@ -166,9 +133,9 @@ export function HeroModern() {
 
       {/* Scroll Indicator */}
       <div 
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-slate-600/70 opacity-0 animate-[fadeIn_1s_ease-out_1.5s_forwards]"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-slate-600/70"
       >
-        <div className="flex flex-col items-center gap-2 animate-bounce">
+        <div className="flex flex-col items-center gap-2">
           <span className="text-xs uppercase tracking-widest">Scroll</span>
           <ChevronDown className="w-5 h-5" />
         </div>

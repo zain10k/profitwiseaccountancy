@@ -12,6 +12,8 @@ interface AnimatedTextProps {
   delay?: number
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div'
   mode?: 'char' | 'word'
+  /** When true, renders static text without any GSAP animation. */
+  disableAnimation?: boolean
 }
 
 export function AnimatedText({
@@ -24,7 +26,8 @@ export function AnimatedText({
   duration = 0.6,
   delay = 0,
   as: Component = 'span',
-  mode = 'char'
+  mode = 'char',
+  disableAnimation = false
 }: AnimatedTextProps) {
   const elementsRef = useRef<HTMLElement[]>([])
   const containerRef = useRef<HTMLElement>(null)
@@ -34,6 +37,7 @@ export function AnimatedText({
   const actualStagger = stagger ?? (mode === 'char' ? 0.03 : 0.05)
 
   useLayoutEffect(() => {
+    if (disableAnimation) return
     // Filter out nulls/undefined in case of rapid re-renders
     const targets = elementsRef.current.filter(Boolean)
     if (targets.length === 0) return
@@ -63,7 +67,7 @@ export function AnimatedText({
     })
 
     return () => ctx.revert()
-  }, [children, trigger, start, actualStagger, duration, delay, mode])
+  }, [children, trigger, start, actualStagger, duration, delay, mode, disableAnimation])
 
   return (
     <Component 

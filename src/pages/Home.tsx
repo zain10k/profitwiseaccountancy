@@ -36,6 +36,7 @@ export function Home() {
               highlightWords={['Control']}
               start="top 85%"
               stagger={0.025}
+              disableAnimation
             >
               Ready to Take Control?
             </AnimatedText>

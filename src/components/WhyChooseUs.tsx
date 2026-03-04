@@ -61,6 +61,7 @@ export function WhyChooseUs() {
             highlightWords={['Business']}
             start="top 85%"
             stagger={0.025}
+            disableAnimation
           >
             A Better Way to Manage Your Business Finances
           </AnimatedText>
@@ -70,6 +71,7 @@ export function WhyChooseUs() {
              mode="word"
              start="top 85%"
              delay={0.2}
+             disableAnimation
           >
             We combine traditional accounting expertise with modern technology to deliver a superior, proactive service.
           </AnimatedText>

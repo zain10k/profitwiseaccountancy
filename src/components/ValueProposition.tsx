@@ -48,6 +48,7 @@ export function ValueProposition() {
                 highlightWords={['Success']}
                 start="top 80%"
                 stagger={0.03}
+                disableAnimation
              >
                 Values That Drive Your Success
              </AnimatedText>
@@ -58,6 +59,7 @@ export function ValueProposition() {
                 mode="word"
                 start="top 80%"
                 delay={0.2}
+                disableAnimation
              >
                 We believe in more than just balancing books. We believe in building a foundation for sustainable wealth and long-term stability.
              </AnimatedText>

@@ -18,6 +18,7 @@ export function Testimonials() {
             highlightWords={['Ambitious']}
             start="top 85%"
             stagger={0.025}
+            disableAnimation
           >
             Trusted by Ambitious Founders
           </AnimatedText>
@@ -27,6 +28,7 @@ export function Testimonials() {
             mode="word"
             start="top 85%"
             delay={0.2}
+            disableAnimation
           >
             Don't just take our word for it. Here's why businesses trust us with their finances.
           </AnimatedText>

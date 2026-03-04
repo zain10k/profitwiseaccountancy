@@ -25,6 +25,7 @@ export function AboutCompanySection() {
             highlightWords={['ProfitWise']}
             start="top 85%"
             stagger={0.02}
+            disableAnimation
           >
             ProfitWise Accountants LTD
           </AnimatedText>
@@ -35,6 +36,7 @@ export function AboutCompanySection() {
             mode="word"
             start="top 85%"
             delay={0.15}
+            disableAnimation
           >
             We are a UK accountancy practice dedicated to giving small and medium businesses the clarity and confidence they need to grow. More than just number-crunchers, we act as your strategic financial partner—handling compliance, tax, and reporting so you can focus on running your business.
           </AnimatedText>
@@ -45,6 +47,7 @@ export function AboutCompanySection() {
             mode="word"
             start="top 85%"
             delay={0.25}
+            disableAnimation
           >
             From bookkeeping and payroll to tax planning and business advisory, we provide tailored solutions that keep you HMRC-compliant, reduce your tax burden, and support your long-term success. Your growth is our mission.
           </AnimatedText>
