@@ -79,6 +79,7 @@ export function Partners() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
       <PageHero
+        variant="compact"
         backgroundImage={PARTNERS_HERO_IMAGE}
         title={
           <AnimatedText

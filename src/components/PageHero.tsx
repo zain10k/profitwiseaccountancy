@@ -12,13 +12,28 @@ interface PageHeroProps {
   /** Optional bar under title */
   showBar?: boolean
   className?: string
+  /** Height variant for the hero section. Default is full-screen. */
+  variant?: 'full' | 'compact'
 }
 
-export function PageHero({ backgroundImage, title, subtitle, showBar = true, className }: PageHeroProps) {
+export function PageHero({
+  backgroundImage,
+  title,
+  subtitle,
+  showBar = true,
+  className,
+  variant = 'full',
+}: PageHeroProps) {
+  const heightClass =
+    variant === 'compact'
+      ? 'min-h-[40vh] sm:min-h-[45vh]'
+      : 'min-h-screen'
+
   return (
     <section
       className={cn(
-        'relative min-h-screen flex items-center justify-center py-24 sm:py-32 overflow-hidden',
+        'relative flex items-center justify-center py-24 sm:py-32 overflow-hidden',
+        heightClass,
         className
       )}
     >

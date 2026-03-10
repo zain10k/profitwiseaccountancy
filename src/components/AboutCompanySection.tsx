@@ -1,23 +1,18 @@
 import { Building2 } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { AnimatedText } from '@/components/ui/AnimatedText'
-import { motion } from 'framer-motion'
 
 export function AboutCompanySection() {
   return (
     <section className="relative py-20 sm:py-28 bg-background overflow-hidden">
       <Container>
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5 }}
+          <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold tracking-wide uppercase mb-8"
           >
             <Building2 className="h-4 w-4" aria-hidden />
             <span>Who We Are</span>
-          </motion.div>
+          </div>
 
           <AnimatedText
             as="h2"

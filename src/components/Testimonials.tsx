@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 
@@ -35,18 +34,12 @@ export function Testimonials() {
         </div>
 
         {/* Elfsight Google Reviews Widget */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="relative"
-        >
+        <div className="relative">
           <div
             className="elfsight-app-45df810a-1bcc-4a55-b35a-24a88fd717d7"
             data-elfsight-app-lazy
           />
-        </motion.div>
+        </div>
       </Container>
     </section>
   )

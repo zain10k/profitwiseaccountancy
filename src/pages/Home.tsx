@@ -8,7 +8,6 @@ import { ValueProposition } from '@/components/ValueProposition'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { AnimatedText } from '@/components/ui/AnimatedText'
-import { motion } from 'framer-motion'
 
 export function Home() {
   return (
@@ -24,12 +23,7 @@ export function Home() {
       <section className="bg-primary py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary-foreground/5 dark:bg-black/10 pattern-dots" />
         <Container className="relative z-10 text-center">
-          <motion.div
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             className="max-w-3xl mx-auto"
-          >
+          <div className="max-w-3xl mx-auto">
             <AnimatedText
               as="h2"
               className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6"
@@ -51,7 +45,7 @@ export function Home() {
                   Book Your Free Consultation
                </Button>
             </div>
-          </motion.div>
+          </div>
         </Container>
       </section>
 

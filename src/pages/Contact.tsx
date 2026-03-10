@@ -17,6 +17,7 @@ export function Contact() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
       <PageHero
+        variant="compact"
         backgroundImage={CONTACT_HERO_IMAGE}
         title={
           <AnimatedText

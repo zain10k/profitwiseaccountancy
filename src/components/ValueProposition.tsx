@@ -1,7 +1,6 @@
 import { BarChart3, ShieldCheck, TrendingUp, Zap } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { AnimatedText } from '@/components/ui/AnimatedText'
-import { motion } from 'framer-motion'
 
 const valuePillars = [
   {
@@ -68,23 +67,9 @@ export function ValueProposition() {
           {/* Right Column: Value Pillars List - full width single column on mobile */}
           <div className="space-y-4 sm:space-y-8 w-full">
             {valuePillars.map((pillar, index) => (
-              <motion.div 
-                key={index} 
-                className="group flex gap-5 p-5 sm:p-4 rounded-xl bg-transparent border border-transparent hover:border-primary/30 transition-colors duration-300 relative cursor-pointer w-full"
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 50, 
-                  damping: 15, 
-                  delay: index * 0.15 
-                }}
-                variants={{
-                    hidden: { opacity: 0, x: 50 },
-                    visible: { opacity: 1, x: 0 }
-                }}
+              <div 
+                key={index}
+                className="group flex gap-5 p-5 sm:p-4 rounded-xl bg-transparent border border-transparent hover:border-primary/30 transition-colors duration-300 relative w-full"
               >
                 <div className="flex-shrink-0">
                   <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:scale-110 group-hover:border-primary/50 transition-all duration-300">
@@ -95,21 +80,13 @@ export function ValueProposition() {
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
                     {pillar.title}
                   </h3>
-                  <motion.div
-                    variants={{
-                        hidden: { height: 0, opacity: 0 },
-                        visible: { height: 0, opacity: 0 },
-                        hover: { height: 'auto', opacity: 1 }
-                    }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="overflow-hidden mobile-extended-description"
-                  >
+                  <div className="mobile-extended-description">
                     <p className="text-slate-300 leading-relaxed text-sm sm:text-base pb-1">
                       {pillar.description}
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 

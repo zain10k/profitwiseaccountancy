@@ -47,14 +47,11 @@ export function WhyChooseUs() {
 
       <Container className="relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2 
             className="text-primary font-semibold tracking-wide uppercase text-sm mb-4"
           >
             Why Partner With Us
-          </motion.h2>
+          </h2>
           <AnimatedText
             as="h3"
             className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900"
@@ -81,10 +78,7 @@ export function WhyChooseUs() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.name}
-              initial="hidden"
-              whileInView="visible"
               whileHover="hover"
-              viewport={{ once: true, margin: '-50px' }}
               transition={{ 
                 delay: index * 0.1, 
                 type: "spring",
@@ -93,8 +87,6 @@ export function WhyChooseUs() {
                 mass: 1
               }}
               variants={{
-                hidden: { opacity: 0, y: 50, scale: 0.9 },
-                visible: { opacity: 1, y: 0, scale: 1 },
                 hover: { 
                   y: -8, 
                   scale: 1.02,

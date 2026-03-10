@@ -6,6 +6,8 @@ import { PageHero } from '@/components/PageHero'
 import { motion } from 'framer-motion'
 import { clientTypes } from '@/data/clientTypes'
 import { onboardingSteps } from '@/data/onboardingSteps'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 /** Unique hero image - calculator/desk (no people). Not used elsewhere. */
 const SERVICES_HERO_IMAGE = 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1920'
@@ -168,10 +170,26 @@ const londonAreas = {
 }
 
 export function Services() {
+  const location = useLocation()
+
+  useEffect(() => {
+    // Handle hash navigation when component mounts or hash changes
+    if (location.hash) {
+      const id = location.hash.replace('#', '')
+      setTimeout(() => {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100) // Small delay to ensure page has rendered
+    }
+  }, [location.hash])
+
   return (
     <div className="flex flex-col w-full overflow-hidden">
       {/* Hero Section */}
       <PageHero
+        variant="compact"
         backgroundImage={SERVICES_HERO_IMAGE}
         title={
           <AnimatedText
@@ -313,7 +331,7 @@ export function Services() {
       </section>
 
       {/* Services Grid Section */}
-      <section className="py-20 sm:py-28 bg-background relative overflow-hidden">
+      <section id="OurServices" className="py-20 sm:py-28 bg-background relative overflow-hidden">
         <Container>
           <div className="text-center mb-16">
             <AnimatedText

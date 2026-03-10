@@ -1,16 +1,20 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/utils/cn'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
+import { ServicesMegaMenu } from '@/components/ServicesMegaMenu'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
   const tickingRef = useRef(false)
+  const servicesHoverTimeoutRef = useRef<number | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +31,28 @@ export function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close the services dropdown when route changes
+  useEffect(() => {
+    setIsServicesOpen(false)
+  }, [location.pathname])
+
+  const openServicesMenu = () => {
+    if (servicesHoverTimeoutRef.current) {
+      window.clearTimeout(servicesHoverTimeoutRef.current)
+      servicesHoverTimeoutRef.current = null
+    }
+    setIsServicesOpen(true)
+  }
+
+  const closeServicesMenuWithDelay = () => {
+    if (servicesHoverTimeoutRef.current) {
+      window.clearTimeout(servicesHoverTimeoutRef.current)
+    }
+    servicesHoverTimeoutRef.current = window.setTimeout(() => {
+      setIsServicesOpen(false)
+    }, 80)
+  }
 
   const navItems = useMemo(
     () => [
@@ -48,6 +74,13 @@ export function Header() {
     [location.pathname]
   )
 
+  const isHome = location.pathname === '/'
+
+  const desktopLinkBaseColors =
+    isScrolled || isHome
+      ? 'text-slate-900 hover:text-primary dark:text-slate-200 dark:hover:text-primary'
+      : 'text-white hover:text-primary dark:text-white dark:hover:text-primary'
+
   return (
     <motion.header
       layout
@@ -55,8 +88,10 @@ export function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out',
         isScrolled
-          ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-lg shadow-slate-900/5 dark:shadow-slate-950/30 border-b border-slate-200/60 dark:border-slate-700/50 py-5 md:py-6'
-          : 'bg-transparent py-4 md:py-5'
+          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-lg shadow-slate-900/5 dark:shadow-slate-950/30 border-b border-slate-200/60 dark:border-slate-700/50 py-3 md:py-4'
+          : isHome
+            ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-lg shadow-slate-900/5 dark:shadow-slate-950/25 py-5 md:py-7'
+            : 'bg-transparent py-5 md:py-7'
       )}
     >
       <Container className="relative flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 md:items-center">
@@ -71,7 +106,7 @@ export function Header() {
             alt="ProfitWise Accountants"
             className={cn(
               'h-auto w-auto transition-all duration-300',
-              isScrolled ? 'h-11 md:h-12' : 'h-10 md:h-11'
+              isScrolled ? 'h-10 md:h-11' : 'h-14 md:h-16'
             )}
             initial={false}
             animate={{
@@ -83,9 +118,51 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation - centered (links only) */}
-        <nav className="hidden md:flex items-center justify-center gap-1 md:gap-2">
+        <nav className="hidden md:flex items-center justify-center gap-4 lg:gap-6">
           {navItems.map((item, index) => {
             const isActive = location.pathname === item.path
+            const isServices = item.path === '/services'
+
+            if (isServices) {
+              return (
+                <div
+                  key={item.path}
+                  className="relative"
+                  onMouseEnter={openServicesMenu}
+                  onMouseLeave={closeServicesMenuWithDelay}
+                >
+                  <motion.button
+                    type="button"
+                    initial={false}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: index * 0.02 }}
+                    className={cn(
+                      'relative flex items-center gap-1 px-5 py-3 text-base font-medium rounded-xl transition-colors',
+                      isActive
+                        ? 'text-primary'
+                        : desktopLinkBaseColors
+                    )}
+                    aria-haspopup="menu"
+                    aria-expanded={isServicesOpen}
+                    onClick={() => {
+                      navigate('/services')
+                      setIsServicesOpen(false)
+                    }}
+                  >
+                    <span className="relative z-10 flex items-center gap-1">
+                      <span>Services</span>
+                      <ChevronDown className="h-3.5 w-3.5" aria-hidden />
+                    </span>
+                  </motion.button>
+
+                  <ServicesMegaMenu
+                    isOpen={isServicesOpen}
+                    onClose={() => setIsServicesOpen(false)}
+                  />
+                </div>
+              )
+            }
+
             return (
               <motion.div
                 key={item.path}
@@ -98,17 +175,11 @@ export function Header() {
                   to={item.path}
                   onClick={() => handleNavClick(item.path)}
                   className={cn(
-                    'relative block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors',
+                    'relative block px-5 py-3 text-base font-medium rounded-xl transition-colors',
                     isActive
                       ? 'text-primary'
-                      : isScrolled
-                        ? 'text-slate-900 hover:text-primary dark:text-slate-200 dark:hover:text-primary'
-                        : 'text-white hover:text-primary dark:text-white dark:hover:text-primary'
+                      : desktopLinkBaseColors
                   )}
-                  style={{
-                    textShadow:
-                      '0 1px 2px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.25), 0 4px 8px rgba(0,0,0,0.2), 0 6px 16px rgba(0,0,0,0.25)',
-                  }}
                 >
                   {/* Hover background pill - behind text */}
                   <motion.span
@@ -152,10 +223,10 @@ export function Header() {
             whileTap={{ scale: 0.98 }}
             className={cn(
               'rounded-full ring-2',
-              isScrolled ? 'ring-slate-200/80 dark:ring-slate-600/50' : 'ring-slate-200/40 dark:ring-slate-600/40'
+              isScrolled ? 'ring-slate-200/80 dark:ring-slate-600/50' : 'ring-slate-200/60 dark:ring-slate-600/50'
             )}
           >
-            <Button to="/contact" size="md" variant="primary" className="shadow-none">
+            <Button to="/contact" size="lg" variant="primary" className="shadow-none px-6">
               Free Consultation
             </Button>
           </motion.div>
@@ -176,7 +247,14 @@ export function Header() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <X className={cn('h-6 w-6', isScrolled ? 'text-slate-900 dark:text-slate-200' : 'text-white dark:text-white')} />
+                <X
+                  className={cn(
+                    'h-7 w-7',
+                    isScrolled || isHome
+                      ? 'text-slate-900 dark:text-slate-200'
+                      : 'text-white dark:text-white'
+                  )}
+                />
               </motion.div>
             ) : (
               <motion.div
@@ -186,7 +264,14 @@ export function Header() {
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Menu className={cn('h-6 w-6', isScrolled ? 'text-slate-900 dark:text-slate-200' : 'text-white dark:text-white')} />
+                <Menu
+                  className={cn(
+                    'h-7 w-7',
+                    isScrolled || isHome
+                      ? 'text-slate-900 dark:text-slate-200'
+                      : 'text-white dark:text-white'
+                  )}
+                />
               </motion.div>
             )}
           </AnimatePresence>

@@ -80,6 +80,7 @@ export function ServicePageTemplate({
 
       {/* Hero Section */}
       <PageHero
+        variant="compact"
         backgroundImage={heroImage}
         title={
           <AnimatedText

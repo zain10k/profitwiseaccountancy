@@ -12,6 +12,7 @@ export function About() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
       <PageHero
+        variant="compact"
         backgroundImage={ABOUT_HERO_IMAGE}
         title={
           <AnimatedText
