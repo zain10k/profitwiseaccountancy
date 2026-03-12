@@ -73,7 +73,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm flex flex-col items-center md:items-start">
               <li className="flex items-start gap-3 justify-center md:justify-start">
                 <MapPin className="h-5 w-5 shrink-0 text-primary" />
-                <span className="leading-relaxed text-center md:text-left">12 Swale Close<br />Aveley, Essex<br />RM15 4LX</span>
+                <span className="leading-relaxed text-center md:text-left">Unit 6A, Firtree House<br />4 Creek Road<br />Barking, IG11 0JH</span>
               </li>
               <li className="flex items-center gap-3 justify-center md:justify-start">
                 <Phone className="h-5 w-5 shrink-0 text-primary" />

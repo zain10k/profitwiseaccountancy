@@ -146,7 +146,7 @@ export function Cookies() {
                   <a href="mailto:info@profitwiseaccountants.com" className="text-primary hover:underline font-medium">
                     info@profitwiseaccountants.com
                   </a>
-                  {' '}or at 12 Swale Close, Aveley, Essex RM15 4LX.
+                  {' '}or at Unit 6A, Firtree House, 4 Creek Road, Barking, IG11 0JH.
                 </p>
               </div>
             </motion.div>

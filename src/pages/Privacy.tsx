@@ -53,7 +53,7 @@ export function Privacy() {
                   1. Who we are
                 </h2>
                 <p className="text-slate-700 leading-relaxed">
-                  ProfitWise Accountants (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a UK accountancy practice. We are the data controller for the personal data we collect in connection with our services. Our registered address is 12 Swale Close, Aveley, Essex RM15 4LX.
+                  ProfitWise Accountants (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a UK accountancy practice. We are the data controller for the personal data we collect in connection with our services. Our registered address is Unit 6A, Firtree House, 4 Creek Road, Barking, IG11 0JH.
                 </p>
               </div>
 
@@ -122,7 +122,7 @@ export function Privacy() {
                   8. Contact
                 </h2>
                 <p className="text-slate-700 leading-relaxed">
-                  For any questions about this privacy policy or our use of your data, please contact us at info@profitwiseaccountants.com or 12 Swale Close, Aveley, Essex RM15 4LX.
+                  For any questions about this privacy policy or our use of your data, please contact us at info@profitwiseaccountants.com or Unit 6A, Firtree House, 4 Creek Road, Barking, IG11 0JH.
                 </p>
               </div>
             </motion.div>

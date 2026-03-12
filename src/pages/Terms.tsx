@@ -53,7 +53,7 @@ export function Terms() {
                   1. Introduction
                 </h2>
                 <p className="text-slate-700 leading-relaxed">
-                  These terms and conditions (&quot;Terms&quot;) apply to the engagement of ProfitWise Accountants (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) to provide accounting, tax, and related services to you (&quot;you&quot;, &quot;client&quot;). By engaging our services or using our website, you agree to these Terms. Our registered address is 12 Swale Close, Aveley, Essex RM15 4LX.
+                  These terms and conditions (&quot;Terms&quot;) apply to the engagement of ProfitWise Accountants (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) to provide accounting, tax, and related services to you (&quot;you&quot;, &quot;client&quot;). By engaging our services or using our website, you agree to these Terms. Our registered address is Unit 6A, Firtree House, 4 Creek Road, Barking, IG11 0JH.
                 </p>
               </div>
 
@@ -116,7 +116,7 @@ export function Terms() {
                   8. Contact
                 </h2>
                 <p className="text-slate-700 leading-relaxed">
-                  For questions about these Terms, please contact us at info@profitwiseaccountants.com or 12 Swale Close, Aveley, Essex RM15 4LX.
+                  For questions about these Terms, please contact us at info@profitwiseaccountants.com or Unit 6A, Firtree House, 4 Creek Road, Barking, IG11 0JH.
                 </p>
               </div>
             </motion.div>

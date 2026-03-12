@@ -21,9 +21,9 @@ const contactMethods = [
   {
     icon: MapPin,
     title: 'Visit Us',
-    content: '12 Swale Close, Aveley',
-    subtext: 'Essex, RM15 4LX',
-    href: 'https://www.google.com/maps?q=12+Swale+Close,+Aveley,+South+Ockendon+RM15+4LX',
+    content: 'Unit 6A, Firtree House',
+    subtext: '4 Creek Road, Barking, IG11 0JH',
+    href: 'https://www.google.com/maps?q=Unit+6A,+Firtree+House,+4+Creek+Road,+Barking+IG11+0JH',
     isExternal: true,
   },
   {

@@ -149,7 +149,7 @@ export function Contact() {
           >
             <div className="w-full h-[400px] md:h-[500px]">
               <iframe
-                src="https://www.google.com/maps?q=12+Swale+Close,+Aveley,+South+Ockendon+RM15+4LX&output=embed"
+                src="https://www.google.com/maps?q=Unit+6A,+Firtree+House,+4+Creek+Road,+Barking+IG11+0JH&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -164,11 +164,11 @@ export function Contact() {
 
           <div className="text-center mt-8">
             <p className="text-slate-600 mb-4">
-              <span className="font-semibold text-slate-900">Address:</span> 12 Swale Close, Aveley,
-              South Ockendon, Essex, RM15 4LX
+              <span className="font-semibold text-slate-900">Address:</span> Unit 6A, Firtree House,
+              4 Creek Road, Barking, IG11 0JH
             </p>
             <a
-              href="https://www.google.com/maps?q=12+Swale+Close,+Aveley,+South+Ockendon+RM15+4LX"
+              href="https://www.google.com/maps?q=Unit+6A,+Firtree+House,+4+Creek+Road,+Barking+IG11+0JH"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
