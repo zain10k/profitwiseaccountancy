@@ -1,4 +1,4 @@
-import { useRef, useMemo, useState, useEffect } from 'react'
+import { useRef, useMemo } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -11,13 +11,6 @@ export function HeroModern() {
   // Laptops and larger screens get the rising-bars animation; phones and
   // tablets get the static photo, since the animation isn't tuned for them.
   const showAnimation = useMediaQuery('(min-width: 1024px)')
-  // True once the video is playing; until then the photo stays on top so
-  // visitors never see a blank frame while the video loads.
-  const [animationReady, setAnimationReady] = useState(false)
-  // The video unmounts below 1024px, so it must load again if the window widens
-  useEffect(() => {
-    if (!showAnimation) setAnimationReady(false)
-  }, [showAnimation])
 
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
@@ -36,7 +29,7 @@ export function HeroModern() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
       {/* Hero Background Visual */}
-      {showAnimation && (
+      {showAnimation ? (
         <div className="absolute inset-0 z-0 overflow-hidden">
           {/* A ~200 KB recording of the bars rising (formerly a 3D Spline
               scene that needed ~2 MB of JS). It plays once and holds on the
@@ -56,21 +49,12 @@ export function HeroModern() {
             playsInline
             preload="auto"
             aria-hidden="true"
-            onPlaying={() => setAnimationReady(true)}
           />
         </div>
+      ) : (
+        // Phones and tablets: the static photo instead of the animation
+        <div className="absolute inset-0 z-10">{heroImage}</div>
       )}
-
-      {/* Photo: the hero on phones/tablets, and the cover on larger screens
-          until the animation starts playing, then it fades out */}
-      <div
-        className={
-          'absolute inset-0 z-10 transition-opacity duration-700 ' +
-          (showAnimation && animationReady ? 'opacity-0 pointer-events-none' : 'opacity-100')
-        }
-      >
-        {heroImage}
-      </div>
 
       {/* Main Content */}
       <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center sm:text-left sm:items-start sm:px-12 lg:px-24">
