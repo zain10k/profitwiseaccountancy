@@ -11,10 +11,9 @@ export function HeroModern() {
   const partnerWrapRef = useRef<HTMLDivElement>(null)
   const partnerLinkRef = useRef<HTMLAnchorElement>(null)
 
-  // Show Spline hero only between 1100px and 1700px viewport width.
-  const isDesktop = useMediaQuery('(min-width: 1100px)')
-  const isVeryLarge = useMediaQuery('(min-width: 1700px)')
-  const showSpline = isDesktop && !isVeryLarge
+  // Laptops and larger screens get the 3D Spline scene; phones and tablets
+  // get the static photo, since the scene isn't tuned for small screens.
+  const showSpline = useMediaQuery('(min-width: 1024px)')
 
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
@@ -33,7 +32,16 @@ export function HeroModern() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
       {/* Hero Background Visual */}
-      <div className="absolute inset-0 z-0">
+      <div
+        className={
+          showSpline
+            ? // Cap the 3D canvas width and pin it right so on very wide screens
+              // the scene stays beside the headline instead of behind it. The
+              // left-edge fade hides the seam between the scene and page colour.
+              'absolute inset-y-0 right-0 z-0 w-full max-w-[1400px] [mask-image:linear-gradient(to_right,transparent,black_20%)]'
+            : 'absolute inset-0 z-0'
+        }
+      >
         {showSpline ? (
           // Show the photo while the 3D scene downloads
           <Suspense fallback={heroImage}>
