@@ -1,20 +1,16 @@
-import { useRef, useMemo, lazy, Suspense } from 'react'
+import { useRef, useMemo } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-
-// The Spline 3D scene (~2 MB of JS) is only downloaded when it is actually shown.
-const Spline = lazy(() => import('@splinetool/react-spline'))
 
 export function HeroModern() {
   const charsRef = useRef<HTMLSpanElement[]>([])
   const partnerWrapRef = useRef<HTMLDivElement>(null)
   const partnerLinkRef = useRef<HTMLAnchorElement>(null)
 
-  // Show Spline hero only between 1100px and 1700px viewport width.
-  const isDesktop = useMediaQuery('(min-width: 1100px)')
-  const isVeryLarge = useMediaQuery('(min-width: 1700px)')
-  const showSpline = isDesktop && !isVeryLarge
+  // Laptops and larger screens get the rising-bars animation; phones and
+  // tablets get the static photo, since the animation isn't tuned for them.
+  const showAnimation = useMediaQuery('(min-width: 1024px)')
 
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
@@ -33,16 +29,32 @@ export function HeroModern() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
       {/* Hero Background Visual */}
-      <div className="absolute inset-0 z-0">
-        {showSpline ? (
-          // Show the photo while the 3D scene downloads
-          <Suspense fallback={heroImage}>
-            <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3" />
-          </Suspense>
-        ) : (
-          heroImage
-        )}
-      </div>
+      {showAnimation ? (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* A ~200 KB recording of the bars rising (formerly a 3D Spline
+              scene that needed ~2 MB of JS). It plays once and holds on the
+              last frame.
+              The 16:9 video fills 75% of the hero's height so the bars sit
+              below the headline; from 1800px wide there's room beside it, so it
+              fills the full height. In the frame the bars
+              span ~37–70% of the width, so it's shifted right until the bars
+              end ~4% from the screen's right edge, keeping them beside the
+              headline. Its left and top edges fade out to hide the seam with
+              the page colour (see .hero-video-fade). */}
+          <video
+            src="/hero-bars.mp4"
+            className="hero-video-fade absolute bottom-0 max-w-none h-[75vh] w-[133.33vh] right-[calc(4vw-40vh)] min-[1800px]:h-full min-[1800px]:w-[177.78vh] min-[1800px]:right-[calc(4vw-53.33vh)]"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          />
+        </div>
+      ) : (
+        // Phones and tablets: the static photo instead of the animation
+        <div className="absolute inset-0 z-10">{heroImage}</div>
+      )}
 
       {/* Main Content */}
       <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center sm:text-left sm:items-start sm:px-12 lg:px-24">

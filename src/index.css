@@ -5,6 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Home hero bars video: fade its left and top edges into the page so the
+   video's slightly whiter background has no visible seam. */
+.hero-video-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 30%),
+    linear-gradient(to bottom, transparent, black 15%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, black 30%),
+    linear-gradient(to bottom, transparent, black 15%);
+  mask-composite: intersect;
+}
+
 @layer base {
   :root {
     /* Single source of truth for dark section backgrounds - seamless transitions (slate-900) */

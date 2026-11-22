@@ -4,7 +4,10 @@ import { useState, useEffect } from 'react'
  * Returns true when the viewport matches the given media query.
  */
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false)
+  // Read the real value on the first render so the wrong layout never flashes
+  const [matches, setMatches] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(query).matches
+  )
 
   useEffect(() => {
     const mql = window.matchMedia(query)
