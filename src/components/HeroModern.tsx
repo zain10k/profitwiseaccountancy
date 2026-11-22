@@ -34,16 +34,20 @@ export function HeroModern() {
           {/* A ~200 KB recording of the bars rising (formerly a 3D Spline
               scene that needed ~2 MB of JS). It plays once and holds on the
               last frame.
-              The 16:9 video fills 75% of the hero's height so the bars sit
-              below the headline; from 1800px wide there's room beside it, so it
-              fills the full height. In the frame the bars
-              span ~37–70% of the width, so it's shifted right until the bars
-              end ~4% from the screen's right edge, keeping them beside the
-              headline. Its left and top edges fade out to hide the seam with
-              the page colour (see .hero-video-fade). */}
+              Sizing (16:9 video; in the frame the bars span ~37–70% of the
+              width and rise from ~29% of the height to the bottom edge):
+              - Below 1800px the bars' tops sit at ~47% of the hero height,
+                under the headline; from 1800px there's room beside it, so
+                they rise to ~29%.
+              - The video is zoomed 1.25x and pushed down past the bottom edge
+                so the bars look bigger while their tops stay at that height.
+              - It's shifted right until the bars end ~4% from the screen's
+                right edge, keeping them beside the headline.
+              Its left and top edges fade out to hide the seam with the page
+              colour (see .hero-video-fade). */}
           <video
             src="/hero-bars.mp4"
-            className="hero-video-fade absolute bottom-0 max-w-none h-[75vh] w-[133.33vh] right-[calc(4vw-40vh)] min-[1800px]:h-full min-[1800px]:w-[177.78vh] min-[1800px]:right-[calc(4vw-53.33vh)]"
+            className="hero-video-fade absolute max-w-none h-[93.75vh] w-[166.67vh] bottom-[-13.31vh] right-[calc(4vw-50vh)] min-[1800px]:h-[125vh] min-[1800px]:w-[222.22vh] min-[1800px]:bottom-[-17.75vh] min-[1800px]:right-[calc(4vw-66.67vh)]"
             autoPlay
             muted
             playsInline
