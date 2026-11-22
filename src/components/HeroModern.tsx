@@ -2,6 +2,7 @@ import { useRef, useMemo, useState, useEffect, lazy, Suspense } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { HERO_SCENE_URL, HERO_SCENE_MEDIA } from '@/utils/heroScene'
 
 // The Spline 3D scene (~2 MB of JS) is only downloaded when it is actually shown.
 const Spline = lazy(() => import('@splinetool/react-spline'))
@@ -13,7 +14,7 @@ export function HeroModern() {
 
   // Laptops and larger screens get the 3D Spline scene; phones and tablets
   // get the static photo, since the scene isn't tuned for small screens.
-  const showSpline = useMediaQuery('(min-width: 1024px)')
+  const showSpline = useMediaQuery(HERO_SCENE_MEDIA)
   // True once the 3D scene has fully loaded; until then the photo stays on top
   // so visitors never see the empty (white) canvas while the scene downloads.
   const [splineReady, setSplineReady] = useState(false)
@@ -46,7 +47,7 @@ export function HeroModern() {
         <div className="absolute inset-y-0 right-0 z-0 w-full max-w-[1400px] [mask-image:linear-gradient(to_right,transparent,black_20%)]">
           <Suspense fallback={null}>
             <Spline
-              scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3"
+              scene={HERO_SCENE_URL}
               onLoad={() => setSplineReady(true)}
             />
           </Suspense>
