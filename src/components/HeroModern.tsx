@@ -1,4 +1,4 @@
-import { useRef, useMemo, lazy, Suspense } from 'react'
+import { useRef, useMemo, useState, useEffect, lazy, Suspense } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -14,6 +14,13 @@ export function HeroModern() {
   // Laptops and larger screens get the 3D Spline scene; phones and tablets
   // get the static photo, since the scene isn't tuned for small screens.
   const showSpline = useMediaQuery('(min-width: 1024px)')
+  // True once the 3D scene has fully loaded; until then the photo stays on top
+  // so visitors never see the empty (white) canvas while the scene downloads.
+  const [splineReady, setSplineReady] = useState(false)
+  // The scene unmounts below 1024px, so it must load again if the window widens
+  useEffect(() => {
+    if (!showSpline) setSplineReady(false)
+  }, [showSpline])
 
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
@@ -32,24 +39,29 @@ export function HeroModern() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
       {/* Hero Background Visual */}
+      {showSpline && (
+        // Cap the 3D canvas width and pin it right so on very wide screens
+        // the scene stays beside the headline instead of behind it. The
+        // left-edge fade hides the seam between the scene and page colour.
+        <div className="absolute inset-y-0 right-0 z-0 w-full max-w-[1400px] [mask-image:linear-gradient(to_right,transparent,black_20%)]">
+          <Suspense fallback={null}>
+            <Spline
+              scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3"
+              onLoad={() => setSplineReady(true)}
+            />
+          </Suspense>
+        </div>
+      )}
+
+      {/* Photo: the hero on phones/tablets, and the cover on larger screens
+          until the 3D scene is ready, then it fades out */}
       <div
         className={
-          showSpline
-            ? // Cap the 3D canvas width and pin it right so on very wide screens
-              // the scene stays beside the headline instead of behind it. The
-              // left-edge fade hides the seam between the scene and page colour.
-              'absolute inset-y-0 right-0 z-0 w-full max-w-[1400px] [mask-image:linear-gradient(to_right,transparent,black_20%)]'
-            : 'absolute inset-0 z-0'
+          'absolute inset-0 z-10 transition-opacity duration-700 ' +
+          (showSpline && splineReady ? 'opacity-0 pointer-events-none' : 'opacity-100')
         }
       >
-        {showSpline ? (
-          // Show the photo while the 3D scene downloads
-          <Suspense fallback={heroImage}>
-            <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3" />
-          </Suspense>
-        ) : (
-          heroImage
-        )}
+        {heroImage}
       </div>
 
       {/* Main Content */}
