@@ -39,15 +39,16 @@ export function HeroModern() {
               - Below 1800px the bars' tops sit at ~47% of the hero height,
                 under the headline; from 1800px there's room beside it, so
                 they rise to ~29%.
-              - The video is zoomed 1.25x and pushed down past the bottom edge
+              - The video is zoomed 1.5x and pushed down past the bottom edge
                 so the bars look bigger while their tops stay at that height.
               - It's shifted right until the bars end ~4% from the screen's
-                right edge, keeping them beside the headline.
+                right edge (from 1800px, ~2% past it, so the larger bars
+                leave a gap after the headline).
               Its left and top edges fade out to hide the seam with the page
               colour (see .hero-video-fade). */}
           <video
             src="/hero-bars.mp4"
-            className="hero-video-fade absolute max-w-none h-[93.75vh] w-[166.67vh] bottom-[-13.31vh] right-[calc(4vw-50vh)] min-[1800px]:h-[125vh] min-[1800px]:w-[222.22vh] min-[1800px]:bottom-[-17.75vh] min-[1800px]:right-[calc(4vw-66.67vh)]"
+            className="hero-video-fade absolute max-w-none h-[112.5vh] w-[200vh] bottom-[-26.63vh] right-[calc(4vw-60vh)] min-[1800px]:h-[150vh] min-[1800px]:w-[266.67vh] min-[1800px]:bottom-[-35.5vh] min-[1800px]:right-[calc(-2vw-80vh)]"
             autoPlay
             muted
             playsInline
