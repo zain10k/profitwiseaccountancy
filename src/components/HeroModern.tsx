@@ -29,7 +29,8 @@ export function HeroModern() {
             alt="Professional accounting workspace" 
             className="w-full h-full object-cover"
             loading="eager"
-            fetchPriority="high"
+            // React 18 only forwards the lowercase attribute; spread keeps TS happy
+            {...{ fetchpriority: 'high' }}
           />
         )}
       </div>
