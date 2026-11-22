@@ -36,3 +36,6 @@ coverage
 # Build outputs
 build
 .vite
+
+# Claude Code personal settings
+.claude/settings.local.json
