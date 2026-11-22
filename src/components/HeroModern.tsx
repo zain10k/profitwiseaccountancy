@@ -1,27 +1,23 @@
-import { useRef, useMemo, useState, useEffect, lazy, Suspense } from 'react'
+import { useRef, useMemo, useState, useEffect } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { HERO_SCENE_URL, HERO_SCENE_MEDIA } from '@/utils/heroScene'
-
-// The Spline 3D scene (~2 MB of JS) is only downloaded when it is actually shown.
-const Spline = lazy(() => import('@splinetool/react-spline'))
 
 export function HeroModern() {
   const charsRef = useRef<HTMLSpanElement[]>([])
   const partnerWrapRef = useRef<HTMLDivElement>(null)
   const partnerLinkRef = useRef<HTMLAnchorElement>(null)
 
-  // Laptops and larger screens get the 3D Spline scene; phones and tablets
-  // get the static photo, since the scene isn't tuned for small screens.
-  const showSpline = useMediaQuery(HERO_SCENE_MEDIA)
-  // True once the 3D scene has fully loaded; until then the photo stays on top
-  // so visitors never see the empty (white) canvas while the scene downloads.
-  const [splineReady, setSplineReady] = useState(false)
-  // The scene unmounts below 1024px, so it must load again if the window widens
+  // Laptops and larger screens get the rising-bars animation; phones and
+  // tablets get the static photo, since the animation isn't tuned for them.
+  const showAnimation = useMediaQuery('(min-width: 1024px)')
+  // True once the video is playing; until then the photo stays on top so
+  // visitors never see a blank frame while the video loads.
+  const [animationReady, setAnimationReady] = useState(false)
+  // The video unmounts below 1024px, so it must load again if the window widens
   useEffect(() => {
-    if (!showSpline) setSplineReady(false)
-  }, [showSpline])
+    if (!showAnimation) setAnimationReady(false)
+  }, [showAnimation])
 
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
@@ -40,26 +36,37 @@ export function HeroModern() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
       {/* Hero Background Visual */}
-      {showSpline && (
-        // Cap the 3D canvas width and pin it right so on very wide screens
-        // the scene stays beside the headline instead of behind it. The
-        // left-edge fade hides the seam between the scene and page colour.
-        <div className="absolute inset-y-0 right-0 z-0 w-full max-w-[1400px] [mask-image:linear-gradient(to_right,transparent,black_20%)]">
-          <Suspense fallback={null}>
-            <Spline
-              scene={HERO_SCENE_URL}
-              onLoad={() => setSplineReady(true)}
-            />
-          </Suspense>
+      {showAnimation && (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* A ~200 KB recording of the bars rising (formerly a 3D Spline
+              scene that needed ~2 MB of JS). It plays once and holds on the
+              last frame.
+              The 16:9 video fills 75% of the hero's height so the bars sit
+              below the headline; from 1800px wide there's room beside it, so it
+              fills the full height. In the frame the bars
+              span ~37–70% of the width, so it's shifted right until the bars
+              end ~4% from the screen's right edge, keeping them beside the
+              headline. Its left and top edges fade out to hide the seam with
+              the page colour (see .hero-video-fade). */}
+          <video
+            src="/hero-bars.mp4"
+            className="hero-video-fade absolute bottom-0 max-w-none h-[75vh] w-[133.33vh] right-[calc(4vw-40vh)] min-[1800px]:h-full min-[1800px]:w-[177.78vh] min-[1800px]:right-[calc(4vw-53.33vh)]"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            onPlaying={() => setAnimationReady(true)}
+          />
         </div>
       )}
 
       {/* Photo: the hero on phones/tablets, and the cover on larger screens
-          until the 3D scene is ready, then it fades out */}
+          until the animation starts playing, then it fades out */}
       <div
         className={
           'absolute inset-0 z-10 transition-opacity duration-700 ' +
-          (showSpline && splineReady ? 'opacity-0 pointer-events-none' : 'opacity-100')
+          (showAnimation && animationReady ? 'opacity-0 pointer-events-none' : 'opacity-100')
         }
       >
         {heroImage}
