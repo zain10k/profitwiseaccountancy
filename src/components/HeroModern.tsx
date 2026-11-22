@@ -1,8 +1,10 @@
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, lazy, Suspense } from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import Spline from '@splinetool/react-spline'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+
+// The Spline 3D scene (~2 MB of JS) is only downloaded when it is actually shown.
+const Spline = lazy(() => import('@splinetool/react-spline'))
 
 export function HeroModern() {
   const charsRef = useRef<HTMLSpanElement[]>([])
@@ -17,21 +19,28 @@ export function HeroModern() {
   const text = useMemo(() => "Financial Clarity For Your Future", [])
   const words = useMemo(() => text.split(' '), [text])
 
+  const heroImage = (
+    <img
+      src="/title photo.webp"
+      alt="Professional accounting workspace"
+      className="w-full h-full object-cover"
+      loading="eager"
+      // React 18 only forwards the lowercase attribute; spread keeps TS happy
+      {...{ fetchpriority: 'high' }}
+    />
+  )
+
   return (
     <div className="relative h-screen w-full overflow-hidden bg-transparent text-foreground">
       {/* Hero Background Visual */}
       <div className="absolute inset-0 z-0">
         {showSpline ? (
-          <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3" />
+          // Show the photo while the 3D scene downloads
+          <Suspense fallback={heroImage}>
+            <Spline scene="https://prod.spline.design/inTyBAsCyiY4aWGe/scene.splinecode?v=3" />
+          </Suspense>
         ) : (
-          <img 
-            src="/title photo.png" 
-            alt="Professional accounting workspace" 
-            className="w-full h-full object-cover"
-            loading="eager"
-            // React 18 only forwards the lowercase attribute; spread keeps TS happy
-            {...{ fetchpriority: 'high' }}
-          />
+          heroImage
         )}
       </div>
 

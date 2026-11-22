@@ -146,15 +146,15 @@ export const allServices = [
 ]
 
 export const serviceImageMap: Record<string, string> = {
-  tax: '/tax.png',
-  bookkeeping: '/book%20keeping.png',
-  payroll: '/payroll.png',
-  management: '/accounts.png',
-  advisory: '/advisory.png',
-  formation: '/company%20formation.png',
+  tax: '/tax.webp',
+  bookkeeping: '/book%20keeping.webp',
+  payroll: '/payroll.webp',
+  management: '/accounts.webp',
+  advisory: '/advisory.webp',
+  formation: '/company%20formation.webp',
   'vat-investigation': 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800',
   'self-assessment': 'https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=800',
-  'wills-trust-probate': '/will.png',
+  'wills-trust-probate': '/will.webp',
 }
 
 export function getServiceImage(id: string) {

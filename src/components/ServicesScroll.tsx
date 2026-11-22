@@ -11,7 +11,7 @@ const services = [
     description: 'Strategic tax planning to minimize liabilities and ensure full compliance with HMRC regulations. We proactively identify opportunities for efficiency.',
     icon: Calculator,
     link: '/services#tax',
-    image: '/tax.png'
+    image: '/tax.webp'
   },
   {
     id: 'bookkeeping',
@@ -19,7 +19,7 @@ const services = [
     description: 'Accurate, timely bookkeeping and VAT return services using the latest cloud accounting software. Keep your records audit-ready at all times.',
     icon: FileText,
     link: '/services#bookkeeping',
-    image: '/book%20keeping.png'
+    image: '/book%20keeping.webp'
   },
   {
     id: 'payroll',
@@ -27,7 +27,7 @@ const services = [
     description: 'Complete payroll solutions including payslips, PAYE, pension contributions, and year-end reporting. Seamless compliance for your workforce.',
     icon: Users,
     link: '/services#payroll',
-    image: '/payroll.png'
+    image: '/payroll.webp'
   },
   {
     id: 'advisory',
@@ -35,7 +35,7 @@ const services = [
     description: 'Expert guidance to help you make informed decisions, improve cash flow, and grow your business. Your long-term success is our priority.',
     icon: TrendingUp,
     link: '/services#advisory',
-    image: '/advisory.png'
+    image: '/advisory.webp'
   },
   {
     id: 'management',
@@ -43,7 +43,7 @@ const services = [
     description: 'Regular financial reports giving you a clear picture of your business performance. Make data-driven decisions with confidence.',
     icon: PieChart,
     link: '/services#management',
-    image: '/accounts.png'
+    image: '/accounts.webp'
   },
   {
     id: 'formation',
@@ -51,7 +51,7 @@ const services = [
     description: 'Assistance with setting up new limited companies, including registration and initial structuring. Start your journey on solid ground.',
     icon: Briefcase,
     link: '/services#formation',
-    image: '/company%20formation.png'
+    image: '/company%20formation.webp'
   },
   {
     id: 'vat-investigation',
@@ -75,7 +75,7 @@ const services = [
     description: 'Comprehensive estate planning and probate services to protect your assets and ensure tax-efficient estate administration.',
     icon: Scale,
     link: '/services#wills-trust-probate',
-    image: '/will.png'
+    image: '/will.webp'
   }
 ]
 
